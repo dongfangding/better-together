@@ -1,26 +1,18 @@
-package com.ddf.better.together.model.entity;
+package com.ddf.better.together.model.dto;
 
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
-import java.io.Serializable;
 import java.time.LocalDateTime;
-import lombok.Data;
 
 /**
- * <p>
- * 用户基本信息表
- * </p>
+ * <p>用户对象信息</p >
  *
- * @author mybatis-plus-generator
- * @since 2021-04-01
+ * @author Snowball
+ * @version 1.0
+ * @date 2021/04/02 11:54
  */
-@Data
-@TableName("user_info" )
-public class UserInfo implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class UserInfoDTO {
 
     private Long id;
 
@@ -50,6 +42,4 @@ public class UserInfo implements Serializable {
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime registerTime;
-
-
 }

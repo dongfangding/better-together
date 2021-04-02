@@ -22,7 +22,17 @@ public enum ExceptionCode implements BaseCallbackCode {
 
     VERIFY_CODE_EXPIRED("10003", "验证码已过期"),
 
-    VERIFY_CODE_NOT_MATCH("10004", "验证码不匹配")
+    VERIFY_CODE_NOT_MATCH("10004", "验证码不匹配"),
+
+    USER_INFO_NOT_EXIST("10005", "用户不存在"),
+
+    APPLY_RECORD_EXIST("10006", "申请记录已存在"),
+
+    APPLY_RECORD_NOT_EXIST("10007", "申请记录不存在"),
+
+    NOT_ALLOW_OPERATE_OTHER_DATA("10008", "不可操作他人数据"),
+
+    APPLY_RECORD_HAD_DEAL("10009", "申请记录已处理，不可继续操作")
 
     ;
 

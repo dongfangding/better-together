@@ -13,4 +13,38 @@ import com.ddf.better.together.model.entity.UserPartnerApply;
  */
 public interface IUserPartnerApplyService extends IService<UserPartnerApply> {
 
+    /**
+     * 根据主键获取记录
+     *
+     * @param id
+     * @return
+     */
+    default UserPartnerApply getByPK(Long id) {
+        return getById(id);
+    }
+
+    /**
+     * 查询是否存在未处理的伙伴申请记录
+     *
+     * @param fromUid
+     * @param targetUid
+     * @return
+     */
+    UserPartnerApply checkNotDealApplyIsExist(String fromUid, String targetUid);
+
+    /**
+     * 同意
+     *
+     * @param id
+     * @return
+     */
+    boolean agree(Long id);
+
+    /**
+     * 拒绝
+     *
+     * @param id
+     * @return
+     */
+    boolean refuse(Long id);
 }

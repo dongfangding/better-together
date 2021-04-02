@@ -2,6 +2,8 @@ package com.ddf.better.together.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.ddf.better.together.model.entity.UserInfo;
+import com.ddf.better.together.model.request.SearchUserRequest;
+import java.util.List;
 
 /**
  * <p>
@@ -12,6 +14,26 @@ import com.ddf.better.together.model.entity.UserInfo;
  * @since 2021-04-01
  */
 public interface IUserInfoService extends IService<UserInfo> {
+
+    /**
+     * 根据uid获取用户信息
+     *
+     * @param uid
+     * @param isCheckExist 是否校验用户信息是否存在
+     * @return
+     */
+    UserInfo getByUid(String uid, boolean isCheckExist);
+
+    /**
+     * 根据uid
+     * 获取并校验用户信息是否存在
+     *
+     * @param uid
+     * @return
+     */
+    default UserInfo getByUidAndCheck(String uid) {
+        return getByUid(uid, Boolean.TRUE);
+    }
 
     /**
      * 根据邮箱查询匹配数
@@ -28,4 +50,12 @@ public interface IUserInfoService extends IService<UserInfo> {
      * @return
      */
     int countByNickname(String nickname);
+
+    /**
+     * 查询用户
+     *
+     * @param request
+     * @return
+     */
+    List<UserInfo> searchUser(SearchUserRequest request);
 }

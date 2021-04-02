@@ -10,7 +10,12 @@ package com.ddf.better.together.constants;
 public class MailConst {
 
     /**
-     * 注册验证码邮件内容
+     * 注册验证码邮件主题
+     */
+    public static final String REGISTRY_CODE_EMAIL_SUBJECT = "注册验证码";
+
+    /**
+     * 注册验证码邮件内容模板
      */
     public static final String REGISTRY_CODE_EMAIL = "感谢您的注册，本次验证码为{0}， 有效期两分钟。";
 }

@@ -4,9 +4,6 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
 
 /**
  * <p>
@@ -17,9 +14,6 @@ import lombok.experimental.SuperBuilder;
  * @since 2021-04-01
  */
 @Data
-@NoArgsConstructor
-@SuperBuilder(toBuilder = true)
-@EqualsAndHashCode(callSuper = false)
 @TableName("user_partner" )
 public class UserPartner implements Serializable {
 
