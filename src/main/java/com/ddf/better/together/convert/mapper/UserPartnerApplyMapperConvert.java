@@ -21,7 +21,7 @@ public interface UserPartnerApplyMapperConvert {
 
 
     /**
-     * 用户属性转换
+     * 伙伴申请对象属性转换
      *
      * @param apply
      * @return

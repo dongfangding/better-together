@@ -13,5 +13,12 @@ import com.ddf.better.together.model.entity.UserPartner;
  */
 public interface IUserPartnerService extends IService<UserPartner> {
 
+    /**
+     * 根据伙伴uid查询对应的我的有效伙伴记录
+     *
+     * @param partnerUid
+     * @return
+     */
+    UserPartner getMyActivePartner(String partnerUid);
 
 }

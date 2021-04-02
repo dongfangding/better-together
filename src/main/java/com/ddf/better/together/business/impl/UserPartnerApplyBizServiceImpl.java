@@ -54,6 +54,10 @@ public class UserPartnerApplyBizServiceImpl implements UserPartnerApplyBizServic
     @Transactional(rollbackFor = Exception.class)
     public UserPartnerApplyResponse apply(UserPartnerApplyRequest request) {
         final UserInfo targetUserInfo = userInfoService.getByUidAndCheck(request.getTargetUid());
+
+        PreconditionUtil.checkArgument(Objects.isNull(userPartnerService.getMyActivePartner(request.getTargetUid())),
+                ExceptionCode.ALREADY_YOURS_PARTNER);
+
         final String currentUid = UserContextUtil.getUserId();
         PreconditionUtil.checkArgument(
                 Objects.isNull(userPartnerApplyService.checkNotDealApplyIsExist(currentUid, request.getTargetUid())),

@@ -32,7 +32,9 @@ public enum ExceptionCode implements BaseCallbackCode {
 
     NOT_ALLOW_OPERATE_OTHER_DATA("10008", "不可操作他人数据"),
 
-    APPLY_RECORD_HAD_DEAL("10009", "申请记录已处理，不可继续操作")
+    APPLY_RECORD_HAD_DEAL("10009", "申请记录已处理，不可继续操作"),
+
+    ALREADY_YOURS_PARTNER("10010", "对方已是你的伙伴哦")
 
     ;
 
