@@ -9,15 +9,15 @@ import lombok.Data;
 
 /**
  * <p>
- * 用户伙伴申请记录表
+ * 用户动态
  * </p>
  *
  * @author mybatis-plus-generator
- * @since 2021-04-01
+ * @since 2021-04-04
  */
 @Data
-@TableName("user_partner_apply" )
-public class UserPartnerApply implements Serializable {
+@TableName("user_dynamic" )
+public class UserDynamic implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -25,34 +25,39 @@ public class UserPartnerApply implements Serializable {
     private Long id;
 
     /**
-     * 0 伙伴申请 1 伙伴关系解散
+     * 用户uid
      */
-    private Integer type;
+    private String uid;
 
     /**
-     * 发起人uid
+     * 动态内容
      */
-    private String fromUid;
+    private String content;
 
     /**
-     * 目标uid
+     * 图片资源id集合，多个用逗号分隔
      */
-    private String targetUid;
+    private String picResourceIds;
 
     /**
-     * 发起时间
+     * 视频资源id
      */
-    private LocalDateTime applyTime;
+    private Long videoResourceId;
 
     /**
-     * 0 已发起 1 已同意 2 已拒绝 3 已过期
+     * 发布时间
      */
-    private Integer status;
+    private LocalDateTime publishTime;
 
     /**
-     * 处理时间
+     * 0 公开 1 仅自己可见
      */
-    private LocalDateTime dealTime;
+    private Integer viewLevel;
+
+    /**
+     * 定位地址
+     */
+    private String location;
 
 
 }

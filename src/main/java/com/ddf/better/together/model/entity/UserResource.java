@@ -9,20 +9,20 @@ import lombok.Data;
 
 /**
  * <p>
- * 用户伙伴关系表
+ * 用户上传的资源表
  * </p>
  *
  * @author mybatis-plus-generator
- * @since 2021-04-01
+ * @since 2021-04-04
  */
 @Data
-@TableName("user_partner" )
-public class UserPartner implements Serializable {
+@TableName("user_resource" )
+public class UserResource implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "id" , type = IdType.AUTO)
-    private Long id;
+        @TableId(value = "id" , type = IdType.AUTO)
+        private Long id;
 
     /**
      * 用户uid
@@ -30,24 +30,24 @@ public class UserPartner implements Serializable {
     private String uid;
 
     /**
-     * 伙伴uid
+     * 图片地址
      */
-    private String partnerUid;
+    private String picUrl;
 
     /**
-     * 成为伙伴时间
+     * 视频地址
      */
-    private LocalDateTime createTime;
+    private String videoUrl;
 
     /**
-     * 0 有效伙伴 1 解散申请中 2 已解散
+     * 资源扩展信息
      */
-    private Integer status;
+    private String extra;
 
     /**
-     * 伙伴关系变更时间
+     * 创建时间
      */
-    private LocalDateTime statusUpdateTime;
+    private LocalDateTime createDate;
 
 
 }
