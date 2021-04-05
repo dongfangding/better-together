@@ -13,7 +13,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,5 +68,22 @@ public class UserResourceServiceImpl extends ServiceImpl<UserResourceMapper, Use
             return saveList;
         }
         throw new BusinessException(ExceptionCode.RESOURCE_PROP_ERROR);
+    }
+
+    /**
+     * 获取用户资源map
+     * key 资源id
+     * value 资源对象
+     *
+     * @param resourceIds
+     * @return
+     */
+    @Override
+    public Map<Long, UserResource> getUserResourceMap(List<Long> resourceIds) {
+        if (CollectionUtil.isEmpty(resourceIds)) {
+            return Collections.emptyMap();
+        }
+        final List<UserResource> resources = listByIds(resourceIds);
+        return resources.stream().collect(Collectors.toMap(UserResource::getId, val -> val));
     }
 }

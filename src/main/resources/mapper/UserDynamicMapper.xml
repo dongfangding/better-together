@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ddf.better.together.mapper.UserDynamicMapper">
+
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ddf.better.together.model.entity.UserDynamic">
+        <id column="id" property="id"/>
+        <result column="uid" property="uid"/>
+        <result column="content" property="content"/>
+        <result column="pic_resource_ids" property="picResourceIds"/>
+        <result column="video_resource_id" property="videoResourceId"/>
+        <result column="publish_time" property="publishTime"/>
+        <result column="view_level" property="viewLevel"/>
+        <result column="location" property="location"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, uid, content, pic_resource_ids, video_resource_id, publish_time, view_level, location
+    </sql>
+
+
+    <select id="searchUserDynamic" resultType="com.ddf.better.together.model.dto.UserDynamicDTO">
+        select ud.id,
+               ud.uid,
+               ui.nickname,
+               ui.avatar_url as avatarUrl,
+               ud.content,
+               ud.pic_resource_ids  as picResourceIds,
+               ud.video_resource_id as videoResourceId,
+               ud.publish_time      as publishTime,
+               ud.location
+        from user_dynamic ud inner join user_info ui on ud.uid = ui.uid
+        <where>
+            ud.uid = #{request.uid}
+        <if test="request.uid != request.currentUid">
+            and ud.view_level = ${@com.ddf.better.together.constants.enumration.UserDynamicViewLevelEnum@OPEN.getCode()}
+        </if>
+        </where>
+    </select>
+</mapper>

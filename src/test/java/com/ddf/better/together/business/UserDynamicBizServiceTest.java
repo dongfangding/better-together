@@ -2,8 +2,10 @@ package com.ddf.better.together.business;
 
 import com.ddf.better.together.ApplicationTest;
 import com.ddf.better.together.model.dto.ResourceDTO;
+import com.ddf.better.together.model.request.SearchUserDynamicRequest;
 import com.ddf.better.together.model.request.UserDynamicPublishRequest;
 import com.ddf.boot.common.core.model.UserClaim;
+import com.ddf.boot.common.core.util.JsonUtil;
 import com.ddf.boot.common.core.util.UserContextUtil;
 import com.google.common.collect.Lists;
 import org.junit.Test;
@@ -21,6 +23,9 @@ public class UserDynamicBizServiceTest extends ApplicationTest {
     @Autowired
     private UserDynamicBizService userDynamicBizService;
 
+    /**
+     * 测试发布动态
+     */
     @Test
     public void testPublishDynamic() {
         UserContextUtil.setUserClaim(new UserClaim().setUserId("1"));
@@ -35,5 +40,18 @@ public class UserDynamicBizServiceTest extends ApplicationTest {
         request.setPicResources(Lists.newArrayList(new ResourceDTO().setUrl("static/工作.jpg"),
                 new ResourceDTO().setUrl("static/吃饭.jpg")));
         userDynamicBizService.publishDynamic(request);
+    }
+
+    /**
+     * 测试查询某个用户的动态
+     */
+    @Test
+    public void testSearchUserDynamic() {
+        UserContextUtil.setUserClaim(new UserClaim().setUserId("2222"));
+        final SearchUserDynamicRequest request = new SearchUserDynamicRequest();
+        request.setUid("1377909795931066461");
+        request.setPageNum(1);
+        request.setPageSize(10);
+        System.out.println(JsonUtil.asString(userDynamicBizService.searchUserDynamic(request)));
     }
 }

@@ -54,5 +54,9 @@ public class UserInfo implements Serializable {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime registerTime;
 
+    /**
+     * 头像url
+     */
+    private String avatarUrl;
 
 }

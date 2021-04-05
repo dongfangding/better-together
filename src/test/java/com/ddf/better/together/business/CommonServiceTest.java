@@ -17,6 +17,9 @@ public class CommonServiceTest extends ApplicationTest {
     @Autowired
     private CommonService commonService;
 
+    /**
+     * 测试生成邮件注册码
+     */
     @Test
     public void testRegistryEmailCode() {
         String email = "dongfang.ding1@gmail.com";

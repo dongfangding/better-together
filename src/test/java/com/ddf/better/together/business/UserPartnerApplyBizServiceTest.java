@@ -23,6 +23,9 @@ public class UserPartnerApplyBizServiceTest extends ApplicationTest {
     @Autowired
     private UserPartnerApplyBizService userPartnerApplyBizService;
 
+    /**
+     * 测试申请好友请求
+     */
     @Test
     public void testApply() {
         UserContextUtil.setUserClaim(new UserClaim().setUserId("1377909795931066461").setUsername("chen"));
@@ -32,6 +35,9 @@ public class UserPartnerApplyBizServiceTest extends ApplicationTest {
         System.out.println(JsonUtil.asString(apply));
     }
 
+    /**
+     * 拒绝好友请求
+     */
     @Test
     public void testRefuse() {
         UserContextUtil.setUserClaim(new UserClaim().setUserId("1377910295816605698").setUsername("chen"));
@@ -42,6 +48,9 @@ public class UserPartnerApplyBizServiceTest extends ApplicationTest {
         userPartnerApplyBizService.refuse(request);
     }
 
+    /**
+     * 同意好友请求
+     */
     @Test
     public void testAgree() {
         UserContextUtil.setUserClaim(new UserClaim().setUserId("1377910295816605698").setUsername("add"));

@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.ddf.better.together.model.entity.UserResource;
 import com.ddf.better.together.model.request.UserResourceCreateRequest;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -23,4 +24,13 @@ public interface IUserResourceService extends IService<UserResource> {
      */
     List<UserResource> create(UserResourceCreateRequest request);
 
+    /**
+     * 获取用户资源map
+     * key 资源id
+     * value 资源对象
+     *
+     * @param resourceIds
+     * @return
+     */
+    Map<Long, UserResource> getUserResourceMap(List<Long> resourceIds);
 }

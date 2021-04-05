@@ -1,9 +1,14 @@
 package com.ddf.better.together.service.impl;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ddf.better.together.mapper.UserDynamicMapper;
+import com.ddf.better.together.model.dto.UserDynamicDTO;
 import com.ddf.better.together.model.entity.UserDynamic;
+import com.ddf.better.together.model.request.SearchUserDynamicRequest;
 import com.ddf.better.together.service.IUserDynamicService;
+import com.ddf.boot.common.core.util.PageUtil;
+import com.ddf.boot.common.core.util.UserContextUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,4 +27,18 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class UserDynamicServiceImpl extends ServiceImpl<UserDynamicMapper, UserDynamic> implements IUserDynamicService {
 
+    private final UserDynamicMapper userDynamicMapper;
+
+    /**
+     * 分页查询用户动态信息
+     *
+     * @param request
+     * @return
+     */
+    @Override
+    public Page<UserDynamicDTO> searchUserDynamic(SearchUserDynamicRequest request) {
+        request.setCurrentUid(UserContextUtil.getUserId());
+        final Page<UserDynamicDTO> pageParam = PageUtil.toMybatis(request);
+        return userDynamicMapper.searchUserDynamic(request, pageParam);
+    }
 }

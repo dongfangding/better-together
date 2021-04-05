@@ -1,7 +1,10 @@
 package com.ddf.better.together.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.ddf.better.together.model.dto.UserDynamicDTO;
 import com.ddf.better.together.model.entity.UserDynamic;
+import com.ddf.better.together.model.request.SearchUserDynamicRequest;
 
 /**
  * <p>
@@ -13,4 +16,11 @@ import com.ddf.better.together.model.entity.UserDynamic;
  */
 public interface IUserDynamicService extends IService<UserDynamic> {
 
+    /**
+     * 分页查询用户动态信息
+     *
+     * @param request
+     * @return
+     */
+    Page<UserDynamicDTO> searchUserDynamic(SearchUserDynamicRequest request);
 }

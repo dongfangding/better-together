@@ -21,6 +21,9 @@ public class UserInfoBizServiceTest extends ApplicationTest {
     private UserInfoBizService userInfoBizService;
 
 
+    /**
+     * 测试注册信息是否可用
+     */
     @Test
     public void testCheckRegistryInfo() {
         final EmailRegistryValidateRequest request = new EmailRegistryValidateRequest();
@@ -29,6 +32,9 @@ public class UserInfoBizServiceTest extends ApplicationTest {
         System.out.println(JsonUtil.asString(userInfoBizService.checkRegistryInfo(request)));
     }
 
+    /**
+     * 测试注册
+     */
     @Test
     public void testRegistry() {
         final EmailRegistryRequest request = new EmailRegistryRequest();
@@ -39,6 +45,9 @@ public class UserInfoBizServiceTest extends ApplicationTest {
         userInfoBizService.registry(request);
     }
 
+    /**
+     * 测试查询用户信息
+     */
     @Test
     public void testSearchUser() {
         final SearchUserRequest request = new SearchUserRequest();
