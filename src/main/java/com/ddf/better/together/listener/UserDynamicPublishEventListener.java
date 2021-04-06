@@ -16,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
 
 /**
@@ -34,6 +35,8 @@ public class UserDynamicPublishEventListener implements ApplicationListener<User
 
     private final IUserDynamicReceiveBoxService userDynamicReceiveBoxService;
 
+    private final ThreadPoolTaskExecutor fillDynamicReceiveBoxPool;
+
     /**
      * Handle an application event.
      *
@@ -41,9 +44,11 @@ public class UserDynamicPublishEventListener implements ApplicationListener<User
      */
     @Override
     public void onApplicationEvent(UserPublishDynamicEvent event) {
-        final UserPublishDynamicEventDTO dto = event.getDto();
-        log.info("用户[{}]发布动态[{}]事件: {}", dto.getUid(), dto, JsonUtil.asString(event));
-        doPartnerDynamicReceiveBox(dto);
+        fillDynamicReceiveBoxPool.execute(() -> {
+            final UserPublishDynamicEventDTO dto = event.getDto();
+            log.info("用户[{}]发布动态[{}]事件: {}", dto.getUid(), dto, JsonUtil.asString(event));
+            doPartnerDynamicReceiveBox(dto);
+        });
     }
 
     /**
