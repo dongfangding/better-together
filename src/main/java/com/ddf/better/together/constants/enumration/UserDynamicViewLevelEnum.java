@@ -21,7 +21,7 @@ public enum UserDynamicViewLevelEnum {
      * 状态
      */
     UNKNOWN(-1, "未知"),
-    OPEN(0, "公开"),
+    FRIEND(0, "仅朋友可见"),
     SELF(1, "仅自己可见")
 
 

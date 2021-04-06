@@ -1,6 +1,7 @@
 package com.ddf.better.together.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ddf.better.together.constants.enumration.UserPartnerStatusEnum;
@@ -8,6 +9,7 @@ import com.ddf.better.together.mapper.UserPartnerMapper;
 import com.ddf.better.together.model.entity.UserPartner;
 import com.ddf.better.together.service.IUserPartnerService;
 import com.ddf.boot.common.core.util.UserContextUtil;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,5 +41,19 @@ public class UserPartnerServiceImpl extends ServiceImpl<UserPartnerMapper, UserP
                 .eq(UserPartner::getPartnerUid, partnerUid)
                 .eq(UserPartner::getStatus, UserPartnerStatusEnum.ACTIVE.getCode());
         return getOne(wrapper);
+    }
+
+    /**
+     * 获取用户的好友列表
+     *
+     * @param uid
+     * @return
+     */
+    @Override
+    public List<UserPartner> getUserPartners(String uid) {
+        final LambdaUpdateWrapper<UserPartner> wrapper = Wrappers.lambdaUpdate();
+        wrapper.eq(UserPartner::getUid, uid)
+                .eq(UserPartner::getStatus, UserPartnerStatusEnum.ACTIVE.getCode());
+        return list(wrapper);
     }
 }

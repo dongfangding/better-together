@@ -28,7 +28,7 @@ public class UserDynamicBizServiceTest extends ApplicationTest {
      */
     @Test
     public void testPublishDynamic() {
-        UserContextUtil.setUserClaim(new UserClaim().setUserId("1"));
+        UserContextUtil.setUserClaim(new UserClaim().setUserId("1377909795931066461"));
         final UserDynamicPublishRequest request = new UserDynamicPublishRequest();
         request.setContent("今天又得写代码");
         request.setLocation("上海市松江区");

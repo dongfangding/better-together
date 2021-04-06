@@ -2,6 +2,7 @@ package com.ddf.better.together.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.ddf.better.together.model.entity.UserPartner;
+import java.util.List;
 
 /**
  * <p>
@@ -20,5 +21,13 @@ public interface IUserPartnerService extends IService<UserPartner> {
      * @return
      */
     UserPartner getMyActivePartner(String partnerUid);
+
+    /**
+     * 获取用户的好友列表
+     *
+     * @param uid
+     * @return
+     */
+    List<UserPartner> getUserPartners(String uid);
 
 }

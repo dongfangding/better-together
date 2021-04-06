@@ -5,8 +5,10 @@ import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ddf.better.together.business.UserDynamicBizService;
 import com.ddf.better.together.constants.TagConst;
+import com.ddf.better.together.event.UserPublishDynamicEvent;
 import com.ddf.better.together.model.dto.ResourceDTO;
 import com.ddf.better.together.model.dto.UserDynamicDTO;
+import com.ddf.better.together.model.dto.UserPublishDynamicEventDTO;
 import com.ddf.better.together.model.entity.UserDynamic;
 import com.ddf.better.together.model.entity.UserResource;
 import com.ddf.better.together.model.request.SearchUserDynamicRequest;
@@ -28,8 +30,11 @@ import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionSynchronizationAdapter;
+import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 /**
  * <p>用户动态业务实现类</p >
@@ -46,6 +51,8 @@ public class UserDynamicBizServiceImpl implements UserDynamicBizService {
     private final IUserResourceService userResourceService;
 
     private final IUserDynamicService userDynamicService;
+
+    private final ApplicationContext applicationContext;
 
     /**
      * 用户发布动态
@@ -84,6 +91,18 @@ public class UserDynamicBizServiceImpl implements UserDynamicBizService {
         }
         userDynamicService.save(dynamic);
 
+        // 事务提交后发布用户发布动态事件
+        TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronizationAdapter() {
+            @Override
+            public void afterCommit() {
+                final UserPublishDynamicEventDTO dto = new UserPublishDynamicEventDTO();
+                dto.setUid(dynamic.getUid());
+                dto.setUserDynamicId(dynamic.getId());
+                dto.setPublishTime(dynamic.getPublishTime());
+                dto.setViewLevel(dynamic.getViewLevel());
+                applicationContext.publishEvent(new UserPublishDynamicEvent(this, dto));
+            }
+        });
         return Boolean.TRUE;
     }
 

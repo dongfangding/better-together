@@ -35,7 +35,7 @@
         <where>
             ud.uid = #{request.uid}
         <if test="request.uid != request.currentUid">
-            and ud.view_level = ${@com.ddf.better.together.constants.enumration.UserDynamicViewLevelEnum@OPEN.getCode()}
+            and ud.view_level = ${@com.ddf.better.together.constants.enumration.UserDynamicViewLevelEnum@FRIEND.getCode()}
         </if>
         </where>
     </select>
