@@ -1,5 +1,7 @@
 package com.ddf.better.together.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ddf.better.together.mapper.UserDynamicReceiveBoxMapper;
 import com.ddf.better.together.model.entity.UserDynamicReceiveBox;
@@ -22,4 +24,16 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class UserDynamicReceiveBoxServiceImpl extends ServiceImpl<UserDynamicReceiveBoxMapper, UserDynamicReceiveBox> implements IUserDynamicReceiveBoxService {
 
+    /**
+     * 删除自己好友动态中的伙伴的动态
+     *
+     * @param partnerUid
+     * @return
+     */
+    @Override
+    public boolean deletePartnerDynamic(String partnerUid) {
+        final LambdaQueryWrapper<UserDynamicReceiveBox> wrapper = Wrappers.lambdaQuery();
+        wrapper.eq(UserDynamicReceiveBox::getUid, partnerUid);
+        return remove(wrapper);
+    }
 }

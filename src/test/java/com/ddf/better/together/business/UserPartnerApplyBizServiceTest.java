@@ -8,6 +8,7 @@ import com.ddf.better.together.model.response.UserPartnerApplyResponse;
 import com.ddf.boot.common.core.model.UserClaim;
 import com.ddf.boot.common.core.util.JsonUtil;
 import com.ddf.boot.common.core.util.UserContextUtil;
+import java.util.concurrent.TimeUnit;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -52,10 +53,11 @@ public class UserPartnerApplyBizServiceTest extends ApplicationTest {
      * 同意好友请求
      */
     @Test
-    public void testAgree() {
+    public void testAgree() throws InterruptedException {
         UserContextUtil.setUserClaim(new UserClaim().setUserId("1377910295816605698").setUsername("add"));
         final AgreePartnerApplyRequest request = new AgreePartnerApplyRequest();
         request.setApplyId(1377913624106737665L);
         userPartnerApplyBizService.agree(request);
+        TimeUnit.SECONDS.sleep(5);
     }
 }

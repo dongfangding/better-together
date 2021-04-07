@@ -6,6 +6,8 @@ import com.ddf.better.together.constants.enumration.UserPartnerApplyStatusEnum;
 import com.ddf.better.together.constants.enumration.UserPartnerApplyTypeEnum;
 import com.ddf.better.together.constants.enumration.UserPartnerStatusEnum;
 import com.ddf.better.together.convert.mapper.UserPartnerApplyMapperConvert;
+import com.ddf.better.together.event.UserPartnerStatusChangeEvent;
+import com.ddf.better.together.model.dto.UserPartnerStatusChangeDTO;
 import com.ddf.better.together.model.entity.UserInfo;
 import com.ddf.better.together.model.entity.UserPartner;
 import com.ddf.better.together.model.entity.UserPartnerApply;
@@ -23,8 +25,11 @@ import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionSynchronizationAdapter;
+import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 /**
  * <p>用户伙伴申请</p >
@@ -43,6 +48,8 @@ public class UserPartnerApplyBizServiceImpl implements UserPartnerApplyBizServic
     private final IUserPartnerApplyService userPartnerApplyService;
 
     private final IUserPartnerService userPartnerService;
+
+    private final ApplicationContext applicationContext;
 
     /**
      * 伙伴关系申请
@@ -102,6 +109,19 @@ public class UserPartnerApplyBizServiceImpl implements UserPartnerApplyBizServic
         partner.setUid(apply.getTargetUid());
         partner.setPartnerUid(apply.getFromUid());
         userPartnerService.save(partner);
+
+
+        // 事务提交后发布伙伴关系状态变更事件
+        TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronizationAdapter() {
+            @Override
+            public void afterCommit() {
+                final UserPartnerStatusChangeDTO dto = new UserPartnerStatusChangeDTO();
+                dto.setUid(apply.getFromUid());
+                dto.setPartnerUid(apply.getTargetUid());
+                dto.setTargetStatus(UserPartnerStatusEnum.ACTIVE);
+                applicationContext.publishEvent(new UserPartnerStatusChangeEvent(this, dto));
+            }
+        });
 
         return Boolean.TRUE;
     }

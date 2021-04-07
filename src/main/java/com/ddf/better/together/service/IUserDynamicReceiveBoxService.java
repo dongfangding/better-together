@@ -13,4 +13,11 @@ import com.ddf.better.together.model.entity.UserDynamicReceiveBox;
  */
 public interface IUserDynamicReceiveBoxService extends IService<UserDynamicReceiveBox> {
 
+    /**
+     * 删除自己好友动态中的伙伴的动态
+     *
+     * @param partnerUid
+     * @return
+     */
+    boolean deletePartnerDynamic(String partnerUid);
 }

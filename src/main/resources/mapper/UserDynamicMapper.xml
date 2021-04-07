@@ -34,7 +34,7 @@
         from user_dynamic ud inner join user_info ui on ud.uid = ui.uid
         <where>
             ud.uid = #{request.uid}
-        <if test="request.uid != request.currentUid">
+        <if test="request.uid != request.currentUid or request.currentUid == null">
             and ud.view_level = ${@com.ddf.better.together.constants.enumration.UserDynamicViewLevelEnum@FRIEND.getCode()}
         </if>
         </where>

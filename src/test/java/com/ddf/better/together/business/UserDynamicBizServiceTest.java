@@ -28,15 +28,16 @@ public class UserDynamicBizServiceTest extends ApplicationTest {
      */
     @Test
     public void testPublishDynamic() {
-        UserContextUtil.setUserClaim(new UserClaim().setUserId("1377909795931066461"));
+        UserContextUtil.setUserClaim(new UserClaim().setUserId("1377910295816605698"));
         final UserDynamicPublishRequest request = new UserDynamicPublishRequest();
-        request.setContent("今天又得写代码");
+        request.setContent("啊，好累啊");
         request.setLocation("上海市松江区");
         request.setViewLevel(0);
         request.setVideoResource(new ResourceDTO().setUrl("static/2.jpg"));
         userDynamicBizService.publishDynamic(request);
 
         request.setVideoResource(null);
+        request.setContent("加班什么的最烦了");
         request.setPicResources(Lists.newArrayList(new ResourceDTO().setUrl("static/工作.jpg"),
                 new ResourceDTO().setUrl("static/吃饭.jpg")));
         userDynamicBizService.publishDynamic(request);

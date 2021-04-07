@@ -17,6 +17,11 @@ import lombok.Data;
 public class UserDynamicDTO {
 
     /**
+     * 动态id
+     */
+    private Long id;
+
+    /**
      * 动态发布人uid
      */
     private String uid;
