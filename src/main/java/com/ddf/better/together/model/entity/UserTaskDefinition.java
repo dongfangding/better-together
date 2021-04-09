@@ -6,9 +6,6 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
 
 /**
  * <p>
@@ -19,9 +16,6 @@ import lombok.experimental.SuperBuilder;
  * @since 2021-04-09
  */
 @Data
-@NoArgsConstructor
-@SuperBuilder(toBuilder = true)
-@EqualsAndHashCode(callSuper = false)
 @TableName("user_task_definition" )
 public class UserTaskDefinition implements Serializable {
 
@@ -48,7 +42,7 @@ public class UserTaskDefinition implements Serializable {
     /**
      * 0 未知  1 一次性任务 2 每日任务 3 每周任务 4 每月任务  5 每年任务
      */
-    private Boolean cycle;
+    private Integer cycle;
 
     /**
      * 一次性任务时需要用户自己指定开始时间， 但其他循环任务则系统自动计算
@@ -83,7 +77,7 @@ public class UserTaskDefinition implements Serializable {
     /**
      * 0 站外奖励，即用文案描述奖励内容，由任务完成者来确认最终任务奖励完成情况	1 积分奖励， 即完成任务有多少积分	2 递进型积分奖励， 递进型的任务奖励，由任务制定者指定奖励等级，每个等级不同的积分奖励，最终由任务制定者或任务监督人来确认奖励等级。	
      */
-    private Boolean rewardType;
+    private Integer rewardType;
 
 
 }

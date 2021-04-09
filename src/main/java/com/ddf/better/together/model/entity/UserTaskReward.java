@@ -5,9 +5,6 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
 
 /**
  * <p>
@@ -18,16 +15,13 @@ import lombok.experimental.SuperBuilder;
  * @since 2021-04-09
  */
 @Data
-@NoArgsConstructor
-@SuperBuilder(toBuilder = true)
-@EqualsAndHashCode(callSuper = false)
 @TableName("user_task_reward" )
 public class UserTaskReward implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-        @TableId(value = "id" , type = IdType.AUTO)
-        private Long id;
+    @TableId(value = "id" , type = IdType.AUTO)
+    private Long id;
 
     /**
      * 对应的任务视图id
