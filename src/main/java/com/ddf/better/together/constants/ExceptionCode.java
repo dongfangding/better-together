@@ -36,7 +36,9 @@ public enum ExceptionCode implements BaseCallbackCode {
 
     ALREADY_YOURS_PARTNER("10010", "对方已是你的伙伴哦"),
 
-    RESOURCE_PROP_ERROR("10011", "资源属性有误，无法上传")
+    RESOURCE_PROP_ERROR("10011", "资源属性有误，无法上传"),
+
+    TASK_NAME_ALREADY_EXIST("10012", "任务名称已存在")
 
     ;
 

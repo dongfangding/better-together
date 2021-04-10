@@ -20,4 +20,14 @@ public interface CacheKeys {
     static String getEmailVerifyCodeKey(String email) {
         return ApplicationNamedKeyGenerator.genKey("verify_code", "email", email);
     }
+
+    /**
+     * 任务开始时间缓存key
+     * ZSet key 任务id 处罚时间戳
+     *
+     * @return
+     */
+    static String getTaskTriggerTimeKey() {
+        return ApplicationNamedKeyGenerator.genKey("task_trigger_time");
+    }
 }

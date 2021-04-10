@@ -9,29 +9,33 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * 用户动态可见级别
+ * 用户任务周期类型枚举
  *
  * @author dongfang.ding
  * @date 2021/2/10 0010 13:49
  */
 @AllArgsConstructor
-public enum UserDynamicViewLevelEnum {
+public enum UserTaskCycleEnum {
 
     /**
      * 状态
      */
     UNKNOWN(-1, "未知"),
-    FRIEND(0, "仅朋友可见"),
-    SELF(1, "仅自己可见")
+    UNKNOWN1(0, "未知"),
+    ONE(1, "一次性任务"),
+    EVERY_DAY(2, "每日任务"),
+    EVERY_WEEK(3, "每周任务"),
+    EVERY_MONTH(4, "每月任务"),
+    EVERY_YEAR(5, "每年任务"),
 
 
     ;
 
-    private static final Map<Integer, UserDynamicViewLevelEnum> MAPPINGS;
+    private static final Map<Integer, UserTaskCycleEnum> MAPPINGS;
 
     static {
-        MAPPINGS = Arrays.stream(UserDynamicViewLevelEnum.values()).collect(Collectors.toMap(
-                UserDynamicViewLevelEnum::getCode, val -> val));
+        MAPPINGS = Arrays.stream(UserTaskCycleEnum.values()).collect(Collectors.toMap(
+                UserTaskCycleEnum::getCode, val -> val));
     }
 
     /**
@@ -40,7 +44,7 @@ public enum UserDynamicViewLevelEnum {
      * @param type
      * @return
      */
-    public static UserDynamicViewLevelEnum instanceOfCode(Integer type) {
+    public static UserTaskCycleEnum instanceOfCode(Integer type) {
         return instanceOfCode(type, false, false);
     }
 
@@ -50,7 +54,7 @@ public enum UserDynamicViewLevelEnum {
      * @param type
      * @return
      */
-    public static UserDynamicViewLevelEnum instanceOfCodeDefaultUnknown(Integer type) {
+    public static UserTaskCycleEnum instanceOfCodeDefaultUnknown(Integer type) {
         return instanceOfCode(type, false, true);
     }
 
@@ -59,7 +63,7 @@ public enum UserDynamicViewLevelEnum {
      * @param type
      * @return
      */
-    public static UserDynamicViewLevelEnum instanceOfCodeConsistency(Integer type) {
+    public static UserTaskCycleEnum instanceOfCodeConsistency(Integer type) {
         return instanceOfCode(type, true, false);
     }
 
@@ -71,8 +75,8 @@ public enum UserDynamicViewLevelEnum {
      * @param defaultUnknown 映射错误时 是否使用默认known对象
      * @return
      */
-    public static UserDynamicViewLevelEnum instanceOfCode(Integer type, boolean consistency, boolean defaultUnknown) {
-        final UserDynamicViewLevelEnum instance = MAPPINGS.get(type);
+    public static UserTaskCycleEnum instanceOfCode(Integer type, boolean consistency, boolean defaultUnknown) {
+        final UserTaskCycleEnum instance = MAPPINGS.get(type);
         if (instance == null) {
             if (consistency) {
                 throw new BusinessException(GlobalCallbackCode.ENUM_CODE_NOT_MAPPING);

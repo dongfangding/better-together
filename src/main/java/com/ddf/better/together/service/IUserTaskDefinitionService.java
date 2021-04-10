@@ -13,4 +13,13 @@ import com.ddf.better.together.model.entity.UserTaskDefinition;
  */
 public interface IUserTaskDefinitionService extends IService<UserTaskDefinition> {
 
+    /**
+     * 根据用户uid和任务名称查询任务记录
+     *
+     * @param uid
+     * @param name
+     * @return
+     */
+    UserTaskDefinition getUserTaskByName(String uid, String name);
+
 }
