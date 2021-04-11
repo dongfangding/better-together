@@ -2,9 +2,9 @@ package com.ddf.better.together.business.impl;
 
 import com.ddf.better.together.business.UserPartnerApplyBizService;
 import com.ddf.better.together.constants.ExceptionCode;
-import com.ddf.better.together.constants.enumration.UserPartnerApplyStatusEnum;
-import com.ddf.better.together.constants.enumration.UserPartnerApplyTypeEnum;
-import com.ddf.better.together.constants.enumration.UserPartnerStatusEnum;
+import com.ddf.better.together.constants.enumeration.UserPartnerApplyStatusEnum;
+import com.ddf.better.together.constants.enumeration.UserPartnerApplyTypeEnum;
+import com.ddf.better.together.constants.enumeration.UserPartnerStatusEnum;
 import com.ddf.better.together.convert.mapper.UserPartnerApplyMapperConvert;
 import com.ddf.better.together.event.UserPartnerStatusChangeEvent;
 import com.ddf.better.together.model.dto.UserPartnerStatusChangeDTO;

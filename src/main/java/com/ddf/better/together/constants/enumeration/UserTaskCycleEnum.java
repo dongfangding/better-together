@@ -1,4 +1,4 @@
-package com.ddf.better.together.constants.enumration;
+package com.ddf.better.together.constants.enumeration;
 
 import com.ddf.boot.common.core.exception200.BusinessException;
 import com.ddf.boot.common.core.exception200.GlobalCallbackCode;
@@ -9,32 +9,34 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * 用户伙伴关系状态
+ * 用户任务周期类型枚举
  *
  * @author dongfang.ding
  * @date 2021/2/10 0010 13:49
  */
 @AllArgsConstructor
-public enum UserPartnerStatusEnum {
+public enum UserTaskCycleEnum {
 
     /**
      * 状态
      */
     UNKNOWN(-1, "未知"),
-    ACTIVE(0, "有效伙伴"),
-    CANCEL_APPLYING(1, "解散申请中"),
-    CANCELED(2, "已解散")
+    UNKNOWN1(0, "未知"),
+    ONE(1, "一次性任务"),
+    EVERY_DAY(2, "每日任务"),
+    EVERY_WEEK(3, "每周任务"),
+    EVERY_MONTH(4, "每月任务"),
+    EVERY_YEAR(5, "每年任务"),
 
 
     ;
 
-    private static final Map<Integer, UserPartnerStatusEnum> MAPPINGS;
+    private static final Map<Integer, UserTaskCycleEnum> MAPPINGS;
 
     static {
-        MAPPINGS = Arrays.stream(UserPartnerStatusEnum.values()).collect(Collectors.toMap(
-                UserPartnerStatusEnum::getCode, val -> val));
+        MAPPINGS = Arrays.stream(UserTaskCycleEnum.values()).collect(Collectors.toMap(
+                UserTaskCycleEnum::getCode, val -> val));
     }
-
 
     /**
      * 获取枚举实例
@@ -42,7 +44,7 @@ public enum UserPartnerStatusEnum {
      * @param type
      * @return
      */
-    public static UserPartnerStatusEnum instanceOfCode(Integer type) {
+    public static UserTaskCycleEnum instanceOfCode(Integer type) {
         return instanceOfCode(type, false, false);
     }
 
@@ -52,7 +54,7 @@ public enum UserPartnerStatusEnum {
      * @param type
      * @return
      */
-    public static UserPartnerStatusEnum instanceOfCodeDefaultUnknown(Integer type) {
+    public static UserTaskCycleEnum instanceOfCodeDefaultUnknown(Integer type) {
         return instanceOfCode(type, false, true);
     }
 
@@ -61,7 +63,7 @@ public enum UserPartnerStatusEnum {
      * @param type
      * @return
      */
-    public static UserPartnerStatusEnum instanceOfCodeConsistency(Integer type) {
+    public static UserTaskCycleEnum instanceOfCodeConsistency(Integer type) {
         return instanceOfCode(type, true, false);
     }
 
@@ -73,8 +75,8 @@ public enum UserPartnerStatusEnum {
      * @param defaultUnknown 映射错误时 是否使用默认known对象
      * @return
      */
-    public static UserPartnerStatusEnum instanceOfCode(Integer type, boolean consistency, boolean defaultUnknown) {
-        final UserPartnerStatusEnum instance = MAPPINGS.get(type);
+    public static UserTaskCycleEnum instanceOfCode(Integer type, boolean consistency, boolean defaultUnknown) {
+        final UserTaskCycleEnum instance = MAPPINGS.get(type);
         if (instance == null) {
             if (consistency) {
                 throw new BusinessException(GlobalCallbackCode.ENUM_CODE_NOT_MAPPING);

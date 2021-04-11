@@ -1,11 +1,16 @@
 package com.ddf.better.together.service.impl;
 
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ddf.better.together.mapper.UserTaskDefinitionMapper;
 import com.ddf.better.together.model.entity.UserTaskDefinition;
+import com.ddf.better.together.model.request.UserTaskDefinitionRequest;
 import com.ddf.better.together.service.IUserTaskDefinitionService;
+import com.ddf.boot.common.core.util.PageUtil;
+import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +26,10 @@ import org.springframework.stereotype.Service;
  * @since 2021-04-09
  */
 @Service
-@RequiredArgsConstructor(onConstructor_={@Autowired})
+@RequiredArgsConstructor(onConstructor_ = {@Autowired})
 @Slf4j
-public class UserTaskDefinitionServiceImpl extends ServiceImpl<UserTaskDefinitionMapper, UserTaskDefinition> implements IUserTaskDefinitionService {
+public class UserTaskDefinitionServiceImpl extends ServiceImpl<UserTaskDefinitionMapper, UserTaskDefinition>
+        implements IUserTaskDefinitionService {
 
     /**
      * 根据用户uid和任务名称查询任务记录
@@ -37,5 +43,38 @@ public class UserTaskDefinitionServiceImpl extends ServiceImpl<UserTaskDefinitio
         wrapper.eq(UserTaskDefinition::getUid, uid);
         wrapper.eq(UserTaskDefinition::getName, name);
         return getOne(wrapper);
+    }
+
+    /**
+     * 查询用户定义的任务
+     *
+     * @param request
+     * @return
+     */
+    @Override
+    public Page<UserTaskDefinition> getUserTaskDefinition(UserTaskDefinitionRequest request) {
+        final Page<UserTaskDefinition> page = PageUtil.toMybatis(request);
+        final LambdaQueryWrapper<UserTaskDefinition> wrapper = Wrappers.lambdaQuery();
+        wrapper.eq(UserTaskDefinition::getUid, request.getUid());
+        wrapper.orderByDesc(UserTaskDefinition::getCreateTime);
+        if (StrUtil.isNotBlank(request.getName())) {
+            wrapper.likeLeft(UserTaskDefinition::getName, request.getName());
+        }
+        if (Objects.nonNull(request.getCycle())) {
+            wrapper.eq(UserTaskDefinition::getCycle, request.getCycle());
+        }
+        if (Objects.nonNull(request.getActive())) {
+            wrapper.eq(UserTaskDefinition::getActive, request.getActive());
+        }
+        if (Objects.nonNull(request.getSupervised())) {
+            wrapper.eq(UserTaskDefinition::getSupervised, request.getSupervised());
+        }
+        if (Objects.nonNull(request.getSupervisedUid())) {
+            wrapper.eq(UserTaskDefinition::getSupervisedUid, request.getSupervisedUid());
+        }
+        if (Objects.nonNull(request.getRewardType())) {
+            wrapper.eq(UserTaskDefinition::getRewardType, request.getRewardType());
+        }
+        return page(page, wrapper);
     }
 }

@@ -1,6 +1,6 @@
 package com.ddf.better.together.model.dto;
 
-import com.ddf.better.together.constants.enumration.UserDynamicViewLevelEnum;
+import com.ddf.better.together.constants.enumeration.UserDynamicViewLevelEnum;
 import com.ddf.boot.common.core.validator.constraint.LogicValueValidator;
 import java.time.LocalDateTime;
 import lombok.Data;

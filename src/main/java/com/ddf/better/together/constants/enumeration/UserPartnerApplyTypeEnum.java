@@ -1,4 +1,4 @@
-package com.ddf.better.together.constants.enumration;
+package com.ddf.better.together.constants.enumeration;
 
 import com.ddf.boot.common.core.exception200.BusinessException;
 import com.ddf.boot.common.core.exception200.GlobalCallbackCode;

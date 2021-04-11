@@ -1,7 +1,7 @@
 package com.ddf.better.together.listener;
 
 import cn.hutool.core.collection.CollectionUtil;
-import com.ddf.better.together.constants.enumration.UserDynamicViewLevelEnum;
+import com.ddf.better.together.constants.enumeration.UserDynamicViewLevelEnum;
 import com.ddf.better.together.event.UserPublishDynamicEvent;
 import com.ddf.better.together.model.dto.UserPublishDynamicEventDTO;
 import com.ddf.better.together.model.entity.UserDynamicReceiveBox;

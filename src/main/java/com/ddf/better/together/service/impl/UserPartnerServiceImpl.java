@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.ddf.better.together.constants.enumration.UserPartnerStatusEnum;
+import com.ddf.better.together.constants.enumeration.UserPartnerStatusEnum;
 import com.ddf.better.together.mapper.UserPartnerMapper;
 import com.ddf.better.together.model.entity.UserPartner;
 import com.ddf.better.together.service.IUserPartnerService;

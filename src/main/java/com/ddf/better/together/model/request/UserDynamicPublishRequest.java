@@ -1,6 +1,6 @@
 package com.ddf.better.together.model.request;
 
-import com.ddf.better.together.constants.enumration.UserDynamicViewLevelEnum;
+import com.ddf.better.together.constants.enumeration.UserDynamicViewLevelEnum;
 import com.ddf.better.together.model.dto.ResourceDTO;
 import com.ddf.boot.common.core.validator.constraint.LogicValueValidator;
 import java.util.List;

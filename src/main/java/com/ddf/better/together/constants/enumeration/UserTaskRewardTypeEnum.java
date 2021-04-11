@@ -1,4 +1,4 @@
-package com.ddf.better.together.constants.enumration;
+package com.ddf.better.together.constants.enumeration;
 
 import com.ddf.boot.common.core.exception200.BusinessException;
 import com.ddf.boot.common.core.exception200.GlobalCallbackCode;
@@ -9,7 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * 用户任务周期类型枚举
+ * 用户任务奖励类型枚举
  *
  * @author dongfang.ding
  * @date 2021/4/10 0010 14:49

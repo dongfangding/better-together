@@ -2,9 +2,11 @@ package com.ddf.better.together.business;
 
 import cn.hutool.core.util.RandomUtil;
 import com.ddf.better.together.ApplicationTest;
-import com.ddf.better.together.constants.enumration.UserTaskCycleEnum;
+import com.ddf.better.together.constants.enumeration.UserTaskCycleEnum;
 import com.ddf.better.together.model.request.DefinitionTaskRequest;
+import com.ddf.better.together.model.request.UserTaskDefinitionRequest;
 import com.ddf.boot.common.core.model.UserClaim;
+import com.ddf.boot.common.core.util.JsonUtil;
 import com.ddf.boot.common.core.util.UserContextUtil;
 import java.time.LocalDateTime;
 import org.junit.Test;
@@ -63,6 +65,16 @@ public class UserTaskDefinitionBizServiceTest extends ApplicationTest {
         request.setCycle(UserTaskCycleEnum.EVERY_YEAR.getCode());
         userTaskDefinitionBizService.definitionTask(request);
 
+    }
+
+    @Test
+    public void testMyTaskDefinition() {
+        UserContextUtil.setUserClaim(new UserClaim("1377909795931066461", "chen"));
+
+        final UserTaskDefinitionRequest request = new UserTaskDefinitionRequest();
+        request.setPageNum(1);
+        request.setPageSiz(2);
+        System.out.println(JsonUtil.asString(userTaskDefinitionBizService.myTaskDefinition(request)));
 
     }
 }

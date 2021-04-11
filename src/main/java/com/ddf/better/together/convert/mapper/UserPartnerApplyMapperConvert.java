@@ -27,8 +27,8 @@ public interface UserPartnerApplyMapperConvert {
      * @return
      */
     @Mappings({
-            @Mapping(target = "typeName", expression = "java(com.ddf.better.together.constants.enumration.UserPartnerApplyTypeEnum.instanceOfCodeDefaultUnknown(apply.getType()).getDesc())"),
-            @Mapping(target = "statusName", expression = "java(com.ddf.better.together.constants.enumration.UserPartnerApplyStatusEnum.instanceOfCodeDefaultUnknown(apply.getStatus()).getDesc())"),
+            @Mapping(target = "typeName", expression = "java(com.ddf.better.together.constants.enumeration.UserPartnerApplyTypeEnum.instanceOfCodeDefaultUnknown(apply.getType()).getDesc())"),
+            @Mapping(target = "statusName", expression = "java(com.ddf.better.together.constants.enumeration.UserPartnerApplyStatusEnum.instanceOfCodeDefaultUnknown(apply.getStatus()).getDesc())"),
     })
     UserPartnerApplyResponse convert(UserPartnerApply apply);
 }

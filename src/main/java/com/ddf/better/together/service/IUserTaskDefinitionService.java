@@ -1,7 +1,9 @@
 package com.ddf.better.together.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.ddf.better.together.model.entity.UserTaskDefinition;
+import com.ddf.better.together.model.request.UserTaskDefinitionRequest;
 
 /**
  * <p>
@@ -21,5 +23,13 @@ public interface IUserTaskDefinitionService extends IService<UserTaskDefinition>
      * @return
      */
     UserTaskDefinition getUserTaskByName(String uid, String name);
+
+    /**
+     * 查询用户定义的任务
+     *
+     * @param request
+     * @return
+     */
+    Page<UserTaskDefinition> getUserTaskDefinition(UserTaskDefinitionRequest request);
 
 }

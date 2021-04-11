@@ -1,46 +1,58 @@
-package com.ddf.better.together.model.request;
+package com.ddf.better.together.model.response;
 
-import cn.hutool.core.util.StrUtil;
-import com.ddf.better.together.constants.enumeration.UserTaskCycleEnum;
-import com.ddf.boot.common.core.util.PreconditionUtil;
-import com.ddf.boot.common.core.validator.constraint.LogicValueValidator;
 import java.time.LocalDateTime;
-import java.util.Objects;
-import javax.validation.constraints.NotBlank;
 import lombok.Data;
 
 /**
- * <p>定义任务请求类</p >
+ * <p>用户任务定义响应类</p >
  *
  * @author Snowball
  * @version 1.0
- * @date 2021/04/10 14:25
+ * @date 2021/04/11 21:18
  */
 @Data
-public class DefinitionTaskRequest {
+public class UserTaskDefinitionResponse {
+
+    /**
+     * id
+     */
+    private Long id;
+
+    /**
+     * 任务创建人
+     */
+    private String uid;
 
     /**
      * 任务名称
      */
-    @NotBlank(message = "任务名称不能为空")
     private String name;
 
     /**
      * 任务描述
      */
-    @NotBlank(message = "任务描述不能为空")
     private String description;
 
     /**
+     * 任务周期类型
      * 0 未知  1 一次性任务 2 每日任务 3 每周任务 4 每月任务  5 每年任务
      */
-    @LogicValueValidator(values = {1, 2, 3, 4, 5}, message = "任务周期类型参数值有误")
     private Integer cycle;
+
+    /**
+     * 任务周期类型
+     */
+    private String cycleName;
 
     /**
      * 一次性任务时需要用户自己指定开始时间， 但其他循环任务则系统自动计算
      */
     private LocalDateTime startTime;
+
+    /**
+     * 任务最初创建时间，对于周期循环任务，这个值是保持最初的时间
+     */
+    private LocalDateTime createTime;
 
     /**
      * 一次性任务时需要用户自己指定任务截止时间， 但其他循环任务则系统自动计算
@@ -65,19 +77,10 @@ public class DefinitionTaskRequest {
     /**
      * 0 站外奖励，即用文案描述奖励内容，由任务完成者来确认最终任务奖励完成情况	1 积分奖励， 即完成任务有多少积分	2 递进型积分奖励， 递进型的任务奖励，由任务制定者指定奖励等级，每个等级不同的积分奖励，最终由任务制定者或任务监督人来确认奖励等级。
      */
-    @LogicValueValidator(values = {0, 1, 2}, message = "任务奖励类型参数值有误")
     private Integer rewardType;
 
     /**
-     * 条惨参数校验
+     * 任务奖励类型
      */
-    public void checkRequirements() {
-        if (Objects.equals(UserTaskCycleEnum.ONE.getCode(), cycle)) {
-            PreconditionUtil.checkBadRequest(Objects.nonNull(startTime), "一次性任务模式下任务开始时间不能为空！");
-            PreconditionUtil.checkBadRequest(Objects.nonNull(startTime), "一次性任务模式下任务结束时间不能为空！");
-        }
-        if (supervised) {
-            PreconditionUtil.checkBadRequest(StrUtil.isNotBlank(supervisedUid), "任务需要监督的话，任务监督人不能为空！");
-        }
-    }
+    private String rewardTypeName;
 }

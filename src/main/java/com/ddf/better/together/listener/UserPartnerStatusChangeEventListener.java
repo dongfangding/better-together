@@ -3,7 +3,7 @@ package com.ddf.better.together.listener;
 import cn.hutool.core.collection.CollectionUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ddf.better.together.constants.BizRuleConst;
-import com.ddf.better.together.constants.enumration.UserPartnerStatusEnum;
+import com.ddf.better.together.constants.enumeration.UserPartnerStatusEnum;
 import com.ddf.better.together.event.UserPartnerStatusChangeEvent;
 import com.ddf.better.together.model.dto.UserDynamicDTO;
 import com.ddf.better.together.model.dto.UserPartnerStatusChangeDTO;

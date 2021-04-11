@@ -1,16 +1,22 @@
 package com.ddf.better.together.business.impl;
 
+import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUtil;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ddf.better.together.business.UserTaskDefinitionBizService;
 import com.ddf.better.together.constants.ExceptionCode;
-import com.ddf.better.together.constants.enumration.UserTaskCycleEnum;
+import com.ddf.better.together.constants.enumeration.UserTaskCycleEnum;
 import com.ddf.better.together.convert.mapper.UserTaskDefinitionMapperConvert;
 import com.ddf.better.together.model.entity.UserTaskDefinition;
 import com.ddf.better.together.model.request.DefinitionTaskRequest;
+import com.ddf.better.together.model.request.UserTaskDefinitionRequest;
+import com.ddf.better.together.model.response.UserTaskDefinitionResponse;
 import com.ddf.better.together.redis.CacheKeys;
 import com.ddf.better.together.service.IUserTaskDefinitionService;
+import com.ddf.boot.common.core.model.PageResult;
 import com.ddf.boot.common.core.util.DateUtils;
+import com.ddf.boot.common.core.util.PageUtil;
 import com.ddf.boot.common.core.util.PreconditionUtil;
 import com.ddf.boot.common.core.util.UserContextUtil;
 import java.time.LocalDateTime;
@@ -90,5 +96,21 @@ public class UserTaskDefinitionBizServiceImpl implements UserTaskDefinitionBizSe
         }
 
         return Boolean.TRUE;
+    }
+
+    /**
+     * 查询登陆用户定义的任务
+     *
+     * @param request
+     * @return
+     */
+    @Override
+    public PageResult<UserTaskDefinitionResponse> myTaskDefinition(UserTaskDefinitionRequest request) {
+        request.setUid(UserContextUtil.getUserId() );
+        final Page<UserTaskDefinition> page = userTaskDefinitionService.getUserTaskDefinition(request);
+        if (CollectionUtil.isEmpty(page.getRecords())) {
+            return PageUtil.empty();
+        }
+        return PageUtil.convertMybatis(page, UserTaskDefinitionMapperConvert.INSTANCE::convert);
     }
 }

@@ -1,6 +1,9 @@
 package com.ddf.better.together.business;
 
 import com.ddf.better.together.model.request.DefinitionTaskRequest;
+import com.ddf.better.together.model.request.UserTaskDefinitionRequest;
+import com.ddf.better.together.model.response.UserTaskDefinitionResponse;
+import com.ddf.boot.common.core.model.PageResult;
 
 /**
  * <p>用户任务定义资源库业务累</p >
@@ -18,4 +21,12 @@ public interface UserTaskDefinitionBizService {
      * @return
      */
     Boolean definitionTask(DefinitionTaskRequest request);
+
+    /**
+     * 查询登陆用户定义的任务
+     *
+     * @param request
+     * @return
+     */
+    PageResult<UserTaskDefinitionResponse> myTaskDefinition(UserTaskDefinitionRequest request);
 }

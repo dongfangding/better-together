@@ -1,6 +1,6 @@
 package com.ddf.better.together.model.dto;
 
-import com.ddf.better.together.constants.enumration.UserPartnerStatusEnum;
+import com.ddf.better.together.constants.enumeration.UserPartnerStatusEnum;
 import lombok.Data;
 
 /**
