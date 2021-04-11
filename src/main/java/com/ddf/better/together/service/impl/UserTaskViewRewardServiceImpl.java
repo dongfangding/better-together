@@ -1,9 +1,9 @@
 package com.ddf.better.together.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.ddf.better.together.mapper.UserTaskRewardMapper;
-import com.ddf.better.together.model.entity.UserTaskReward;
-import com.ddf.better.together.service.IUserTaskRewardService;
+import com.ddf.better.together.mapper.UserTaskViewRewardMapper;
+import com.ddf.better.together.model.entity.UserTaskViewReward;
+import com.ddf.better.together.service.IUserTaskViewRewardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +15,11 @@ import org.springframework.stereotype.Service;
  * </p>
  *
  * @author mybatis-plus-generator
- * @since 2021-04-09
+ * @since 2021-04-11
  */
 @Service
 @RequiredArgsConstructor(onConstructor_={@Autowired})
 @Slf4j
-public class UserTaskRewardServiceImpl extends ServiceImpl<UserTaskRewardMapper, UserTaskReward> implements IUserTaskRewardService {
+public class UserTaskViewRewardServiceImpl extends ServiceImpl<UserTaskViewRewardMapper, UserTaskViewReward> implements IUserTaskViewRewardService {
 
 }

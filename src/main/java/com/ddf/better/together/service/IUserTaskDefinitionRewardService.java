@@ -1,7 +1,7 @@
 package com.ddf.better.together.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.ddf.better.together.model.entity.UserTaskReward;
+import com.ddf.better.together.model.entity.UserTaskDefinitionReward;
 
 /**
  * <p>
@@ -9,8 +9,8 @@ import com.ddf.better.together.model.entity.UserTaskReward;
  * </p>
  *
  * @author mybatis-plus-generator
- * @since 2021-04-09
+ * @since 2021-04-11
  */
-public interface IUserTaskRewardService extends IService<UserTaskReward> {
+public interface IUserTaskDefinitionRewardService extends IService<UserTaskDefinitionReward> {
 
 }

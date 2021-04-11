@@ -7,12 +7,16 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ddf.better.together.business.UserTaskDefinitionBizService;
 import com.ddf.better.together.constants.ExceptionCode;
 import com.ddf.better.together.constants.enumeration.UserTaskCycleEnum;
+import com.ddf.better.together.constants.enumeration.UserTaskRewardTypeEnum;
 import com.ddf.better.together.convert.mapper.UserTaskDefinitionMapperConvert;
 import com.ddf.better.together.model.entity.UserTaskDefinition;
+import com.ddf.better.together.model.entity.UserTaskDefinitionReward;
+import com.ddf.better.together.model.request.AddTaskDefinitionRewardRequest;
 import com.ddf.better.together.model.request.DefinitionTaskRequest;
 import com.ddf.better.together.model.request.UserTaskDefinitionRequest;
 import com.ddf.better.together.model.response.UserTaskDefinitionResponse;
 import com.ddf.better.together.redis.CacheKeys;
+import com.ddf.better.together.service.IUserTaskDefinitionRewardService;
 import com.ddf.better.together.service.IUserTaskDefinitionService;
 import com.ddf.boot.common.core.model.PageResult;
 import com.ddf.boot.common.core.util.DateUtils;
@@ -20,6 +24,8 @@ import com.ddf.boot.common.core.util.PageUtil;
 import com.ddf.boot.common.core.util.PreconditionUtil;
 import com.ddf.boot.common.core.util.UserContextUtil;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -43,6 +49,8 @@ public class UserTaskDefinitionBizServiceImpl implements UserTaskDefinitionBizSe
     private final IUserTaskDefinitionService userTaskDefinitionService;
 
     private final StringRedisTemplate stringRedisTemplate;
+
+    private final IUserTaskDefinitionRewardService userTaskDefinitionRewardService;
 
 
     /**
@@ -90,11 +98,28 @@ public class UserTaskDefinitionBizServiceImpl implements UserTaskDefinitionBizSe
         userTaskDefinition.setEndTime(endTime);
         userTaskDefinitionService.save(userTaskDefinition);
 
+        // 处理任务奖励
+        final List<AddTaskDefinitionRewardRequest> rewardList = request.getRewardList();
+        List<UserTaskDefinitionReward> rewardSaveList = new ArrayList<>(rewardList.size());
+        for (AddTaskDefinitionRewardRequest rewardRequest : rewardList) {
+            final UserTaskDefinitionReward reward = new UserTaskDefinitionReward();
+            reward.setUserTaskDefinitionId(userTaskDefinition.getId());
+            reward.setType(request.getRewardType());
+            reward.setDescription(rewardRequest.getDescription());
+            if (Objects.equals(UserTaskRewardTypeEnum.SCORE.getCode(), request.getRewardType())
+                    || Objects.equals(UserTaskRewardTypeEnum.LEVEL_SCORE.getCode(), request.getRewardType())) {
+                reward.setRewardScore(rewardRequest.getRewardScore());
+            }
+            reward.setObtain(false);
+            rewardSaveList.add(reward);
+        }
+        userTaskDefinitionRewardService.saveBatch(rewardSaveList);
+
+        // 缓存任务触发时间，定时扫描开启任务
         if (Objects.nonNull(startTime)) {
             stringRedisTemplate.opsForZSet().add(CacheKeys.getTaskTriggerTimeKey(), String.valueOf(userTaskDefinition.getId()),
                     DateUtils.toDefaultMills(startTime));
         }
-
         return Boolean.TRUE;
     }
 

@@ -3,12 +3,15 @@ package com.ddf.better.together.business;
 import cn.hutool.core.util.RandomUtil;
 import com.ddf.better.together.ApplicationTest;
 import com.ddf.better.together.constants.enumeration.UserTaskCycleEnum;
+import com.ddf.better.together.constants.enumeration.UserTaskRewardTypeEnum;
+import com.ddf.better.together.model.request.AddTaskDefinitionRewardRequest;
 import com.ddf.better.together.model.request.DefinitionTaskRequest;
 import com.ddf.better.together.model.request.UserTaskDefinitionRequest;
 import com.ddf.boot.common.core.model.UserClaim;
 import com.ddf.boot.common.core.util.JsonUtil;
 import com.ddf.boot.common.core.util.UserContextUtil;
 import java.time.LocalDateTime;
+import org.assertj.core.util.Lists;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -38,6 +41,9 @@ public class UserTaskDefinitionBizServiceTest extends ApplicationTest {
         request.setSupervised(true);
         request.setSupervisedUid("111222");
         request.setRewardType(0);
+        final AddTaskDefinitionRewardRequest rewardRequest = new AddTaskDefinitionRewardRequest();
+        rewardRequest.setDescription("奖励人民币1000元");
+        request.setRewardList(Lists.newArrayList(rewardRequest));
 
         userTaskDefinitionBizService.definitionTask(request);
 
@@ -45,24 +51,41 @@ public class UserTaskDefinitionBizServiceTest extends ApplicationTest {
         request.setName("测试任务" + s);
         request.setDescription("测试任务描述" + s);
         request.setCycle(UserTaskCycleEnum.EVERY_DAY.getCode());
+        rewardRequest.setDescription("奖励人民币2000元");
+        request.setRewardList(Lists.newArrayList(rewardRequest));
         userTaskDefinitionBizService.definitionTask(request);
 
         s = RandomUtil.randomString(10);;
         request.setName("测试任务" + s);
         request.setDescription("测试任务描述" + s);
         request.setCycle(UserTaskCycleEnum.EVERY_WEEK.getCode());
+        rewardRequest.setDescription("奖励人民币3000元");
+        request.setRewardList(Lists.newArrayList(rewardRequest));
         userTaskDefinitionBizService.definitionTask(request);
 
         s = RandomUtil.randomString(10);;
         request.setName("测试任务" + s);
         request.setDescription("测试任务描述" + s);
-        request.setCycle(UserTaskCycleEnum.EVERY_MONTH.getCode());
+        request.setRewardType(UserTaskRewardTypeEnum.SCORE.getCode());
+        final AddTaskDefinitionRewardRequest rewardRequest2 = new AddTaskDefinitionRewardRequest();
+        rewardRequest2.setDescription("这是一个积分奖励");
+        rewardRequest2.setRewardScore(200L);
+        request.setRewardList(Lists.newArrayList(rewardRequest2));
         userTaskDefinitionBizService.definitionTask(request);
 
         s = RandomUtil.randomString(10);;
         request.setName("测试任务" + s);
         request.setDescription("测试任务描述" + s);
         request.setCycle(UserTaskCycleEnum.EVERY_YEAR.getCode());
+        request.setRewardType(UserTaskRewardTypeEnum.LEVEL_SCORE.getCode());
+        final AddTaskDefinitionRewardRequest rewardRequest3 = new AddTaskDefinitionRewardRequest();
+        rewardRequest3.setDescription("这是一个递进积分奖励");
+        rewardRequest3.setRewardScore(500L);
+
+        final AddTaskDefinitionRewardRequest rewardRequest4 = new AddTaskDefinitionRewardRequest();
+        rewardRequest4.setDescription("这是一个递进积分奖励");
+        rewardRequest4.setRewardScore(1000L);
+        request.setRewardList(Lists.newArrayList(rewardRequest3, rewardRequest4));
         userTaskDefinitionBizService.definitionTask(request);
 
     }

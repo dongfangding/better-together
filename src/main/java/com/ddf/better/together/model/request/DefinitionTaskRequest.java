@@ -5,8 +5,11 @@ import com.ddf.better.together.constants.enumeration.UserTaskCycleEnum;
 import com.ddf.boot.common.core.util.PreconditionUtil;
 import com.ddf.boot.common.core.validator.constraint.LogicValueValidator;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import lombok.Data;
 
 /**
@@ -67,6 +70,10 @@ public class DefinitionTaskRequest {
      */
     @LogicValueValidator(values = {0, 1, 2}, message = "任务奖励类型参数值有误")
     private Integer rewardType;
+
+    @Valid
+    @NotEmpty(message = "任务奖励不能为空")
+    private List<AddTaskDefinitionRewardRequest> rewardList;
 
     /**
      * 条惨参数校验

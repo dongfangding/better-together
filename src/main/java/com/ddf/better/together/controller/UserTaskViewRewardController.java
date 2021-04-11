@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
  * </p>
  *
  * @author mybatis-plus-generator
- * @since 2021-04-09
+ * @since 2021-04-11
  */
 @RestController
-@RequestMapping("/userTaskReward")
+@RequestMapping("/userTaskViewReward")
 @RequiredArgsConstructor(onConstructor_={@Autowired})
 @Slf4j
-public class UserTaskRewardController {
+public class UserTaskViewRewardController {
 
 }
 

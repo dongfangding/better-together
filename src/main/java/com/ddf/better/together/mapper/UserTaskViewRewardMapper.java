@@ -1,7 +1,7 @@
 package com.ddf.better.together.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.ddf.better.together.model.entity.UserTaskReward;
+import com.ddf.better.together.model.entity.UserTaskViewReward;
 
 /**
  * <p>
@@ -9,8 +9,8 @@ import com.ddf.better.together.model.entity.UserTaskReward;
  * </p>
  *
  * @author mybatis-plus-generator
- * @since 2021-04-09
+ * @since 2021-04-11
  */
-public interface UserTaskRewardMapper extends BaseMapper<UserTaskReward> {
+public interface UserTaskViewRewardMapper extends BaseMapper<UserTaskViewReward> {
 
 }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ddf.better.together.mapper.UserTaskDefinitionRewardMapper">
+
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ddf.better.together.model.entity.UserTaskDefinitionReward">
+            <id column="id" property="id" />
+        <result column="user_task_definition_id" property="userTaskDefinitionId" />
+        <result column="type" property="type" />
+        <result column="description" property="description" />
+        <result column="reward_score" property="rewardScore" />
+        <result column="obtain" property="obtain" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, user_task_definition_id, type, description, reward_score, obtain
+    </sql>
+</mapper>
