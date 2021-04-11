@@ -54,6 +54,12 @@
         </dependency>
 
         <dependency>
+            <groupId>com.ddf.common</groupId>
+            <artifactId>ddf-common-xxl-executor</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>

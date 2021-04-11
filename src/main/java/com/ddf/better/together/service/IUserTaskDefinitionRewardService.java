@@ -2,6 +2,7 @@ package com.ddf.better.together.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.ddf.better.together.model.entity.UserTaskDefinitionReward;
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +14,11 @@ import com.ddf.better.together.model.entity.UserTaskDefinitionReward;
  */
 public interface IUserTaskDefinitionRewardService extends IService<UserTaskDefinitionReward> {
 
+    /**
+     * 根据任务定义id集合获取他们的奖励
+     *
+     * @param taskDefinitionIds
+     * @return
+     */
+    List<UserTaskDefinitionReward> listByTaskDefinitionIds(List<Long> taskDefinitionIds);
 }

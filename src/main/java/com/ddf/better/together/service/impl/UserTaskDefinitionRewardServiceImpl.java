@@ -1,9 +1,12 @@
 package com.ddf.better.together.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ddf.better.together.mapper.UserTaskDefinitionRewardMapper;
 import com.ddf.better.together.model.entity.UserTaskDefinitionReward;
 import com.ddf.better.together.service.IUserTaskDefinitionRewardService;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,4 +25,16 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class UserTaskDefinitionRewardServiceImpl extends ServiceImpl<UserTaskDefinitionRewardMapper, UserTaskDefinitionReward> implements IUserTaskDefinitionRewardService {
 
+    /**
+     * 根据任务定义id集合获取他们的奖励
+     *
+     * @param taskDefinitionIds
+     * @return
+     */
+    @Override
+    public List<UserTaskDefinitionReward> listByTaskDefinitionIds(List<Long> taskDefinitionIds) {
+        final LambdaQueryWrapper<UserTaskDefinitionReward> wrapper = Wrappers.lambdaQuery();
+        wrapper.in(UserTaskDefinitionReward::getUserTaskDefinitionId, taskDefinitionIds);
+        return list(wrapper);
+    }
 }
