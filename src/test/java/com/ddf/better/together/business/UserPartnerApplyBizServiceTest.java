@@ -32,6 +32,8 @@ public class UserPartnerApplyBizServiceTest extends ApplicationTest {
         UserContextUtil.setUserClaim(new UserClaim().setUserId("1377909795931066461").setUsername("chen"));
         final UserPartnerApplyRequest request = new UserPartnerApplyRequest();
         request.setTargetUid("1377910295816605698");
+        request.setApplyRemark("我是小小猪");
+        request.setTargetNameRemark("小猫咪");
         final UserPartnerApplyResponse apply = userPartnerApplyBizService.apply(request);
         System.out.println(JsonUtil.asString(apply));
     }
@@ -56,7 +58,8 @@ public class UserPartnerApplyBizServiceTest extends ApplicationTest {
     public void testAgree() throws InterruptedException {
         UserContextUtil.setUserClaim(new UserClaim().setUserId("1377910295816605698").setUsername("add"));
         final AgreePartnerApplyRequest request = new AgreePartnerApplyRequest();
-        request.setApplyId(1377913624106737665L);
+        request.setApplyId(1377916311195922434L);
+        request.setPartnerNameRemark("小小猪");
         userPartnerApplyBizService.agree(request);
         TimeUnit.SECONDS.sleep(5);
     }

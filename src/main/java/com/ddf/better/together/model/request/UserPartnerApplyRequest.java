@@ -18,4 +18,14 @@ public class UserPartnerApplyRequest {
      */
     @NotBlank(message = "目标用户uid不能为空")
     private String targetUid;
+
+    /**
+     * 伙伴名称备注
+     */
+    private String targetNameRemark;
+
+    /**
+     * 申请备注
+     */
+    private String applyRemark;
 }

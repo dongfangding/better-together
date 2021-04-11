@@ -35,6 +35,11 @@ public class UserPartner implements Serializable {
     private String partnerUid;
 
     /**
+     * 好友备注
+     */
+    private String partnerNameRemark;
+
+    /**
      * 成为伙伴时间
      */
     private LocalDateTime createTime;

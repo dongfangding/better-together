@@ -18,4 +18,9 @@ public class AgreePartnerApplyRequest {
      */
     @NotNull(message = "申请记录id不能为空")
     private Long applyId;
+
+    /**
+     * 好友备注名称
+     */
+    private String partnerNameRemark;
 }

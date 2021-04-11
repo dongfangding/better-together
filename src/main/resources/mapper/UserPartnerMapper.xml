@@ -8,6 +8,7 @@
             <id column="id" property="id" />
         <result column="uid" property="uid" />
         <result column="partner_uid" property="partnerUid" />
+        <result column="partner_name_remark" property="partnerNameRemark" />
         <result column="create_time" property="createTime" />
         <result column="status" property="status" />
         <result column="status_update_time" property="statusUpdateTime" />
@@ -15,6 +16,6 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, uid, partner_uid, create_time, status, status_update_time
+        id, uid, partner_uid, create_time, status, status_update_time, partner_name_remark
     </sql>
 </mapper>

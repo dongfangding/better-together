@@ -40,6 +40,11 @@ public class UserPartnerApply implements Serializable {
     private String targetUid;
 
     /**
+     * 目标名称备注
+     */
+    private String targetNameRemark;
+
+    /**
      * 发起时间
      */
     private LocalDateTime applyTime;
@@ -53,6 +58,11 @@ public class UserPartnerApply implements Serializable {
      * 处理时间
      */
     private LocalDateTime dealTime;
+
+    /**
+     * 申请备注
+     */
+    private String applyRemark;
 
 
 }

@@ -9,13 +9,15 @@
         <result column="type" property="type" />
         <result column="from_uid" property="fromUid" />
         <result column="target_uid" property="targetUid" />
+        <result column="target_name_remark" property="targetNameRemark" />
         <result column="apply_time" property="applyTime" />
         <result column="status" property="status" />
         <result column="deal_time" property="dealTime" />
+        <result column="apply_remark" property="applyRemark" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, type, from_uid, target_uid, apply_time, status, deal_time
+        id, type, from_uid, target_uid, target_name_remark, apply_time, status, deal_time, apply_remark
     </sql>
 </mapper>

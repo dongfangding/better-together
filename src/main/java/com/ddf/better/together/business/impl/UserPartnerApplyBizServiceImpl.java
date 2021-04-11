@@ -73,6 +73,8 @@ public class UserPartnerApplyBizServiceImpl implements UserPartnerApplyBizServic
 
         final UserPartnerApply apply = new UserPartnerApply();
         apply.setFromUid(currentUid);
+        apply.setApplyRemark(request.getApplyRemark());
+        apply.setTargetNameRemark(request.getTargetNameRemark());
         apply.setTargetUid(request.getTargetUid());
         apply.setType(UserPartnerApplyTypeEnum.BE_PARTNER.getCode());
         final LocalDateTime now = LocalDateTime.now();
@@ -101,6 +103,7 @@ public class UserPartnerApplyBizServiceImpl implements UserPartnerApplyBizServic
         partner.setCreateTime(now);
         partner.setUid(apply.getFromUid());
         partner.setPartnerUid(apply.getTargetUid());
+        partner.setPartnerNameRemark(apply.getTargetNameRemark());
         partner.setStatus(UserPartnerStatusEnum.ACTIVE.getCode());
         partner.setStatusUpdateTime(now);
         userPartnerService.save(partner);
@@ -108,6 +111,7 @@ public class UserPartnerApplyBizServiceImpl implements UserPartnerApplyBizServic
         partner.setId(null);
         partner.setUid(apply.getTargetUid());
         partner.setPartnerUid(apply.getFromUid());
+        partner.setPartnerNameRemark(request.getPartnerNameRemark());
         userPartnerService.save(partner);
 
 
