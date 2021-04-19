@@ -26,8 +26,8 @@ public class UserTaskViewReward implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-        @TableId(value = "id" , type = IdType.AUTO)
-        private Long id;
+    @TableId(value = "id" , type = IdType.AUTO)
+    private Long id;
 
     /**
      * 对应的任务视图id

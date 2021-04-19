@@ -134,7 +134,7 @@ public class UserTaskDefinitionBizServiceImpl implements UserTaskDefinitionBizSe
         request.setUid(UserContextUtil.getUserId() );
         final Page<UserTaskDefinition> page = userTaskDefinitionService.getUserTaskDefinition(request);
         if (CollectionUtil.isEmpty(page.getRecords())) {
-            return PageUtil.empty();
+            return PageUtil.empty(request);
         }
         return PageUtil.convertMybatis(page, UserTaskDefinitionMapperConvert.INSTANCE::convert);
     }

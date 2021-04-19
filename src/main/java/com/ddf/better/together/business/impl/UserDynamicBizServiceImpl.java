@@ -116,7 +116,7 @@ public class UserDynamicBizServiceImpl implements UserDynamicBizService {
     public PageResult<UserDynamicResponse> searchUserDynamic(SearchUserDynamicRequest request) {
         final Page<UserDynamicDTO> page = userDynamicService.searchUserDynamic(request);
         if (Objects.isNull(page) || CollectionUtil.isEmpty(page.getRecords())) {
-            return PageUtil.empty();
+            return PageUtil.empty(request);
         }
         final List<UserDynamicDTO> records = page.getRecords();
         List<Long> resourceIds = new ArrayList<>();

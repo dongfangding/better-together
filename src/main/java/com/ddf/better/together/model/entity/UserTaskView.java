@@ -9,7 +9,7 @@ import lombok.Data;
 
 /**
  * <p>
- * 用户任务定义表
+ * 用户任务视图表
  * </p>
  *
  * @author mybatis-plus-generator
@@ -23,6 +23,11 @@ public class UserTaskView implements Serializable {
 
     @TableId(value = "id" , type = IdType.AUTO)
     private Long id;
+
+    /**
+     * 任务视图id,当前表关联时使用这个字段
+     */
+    private Long userTaskViewId;
 
     /**
      * 任务创建人
