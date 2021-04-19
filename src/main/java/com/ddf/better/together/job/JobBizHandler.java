@@ -97,6 +97,8 @@ public class JobBizHandler {
                     userTaskDefinitionList.clear();
                 }
             }
+            stringRedisTemplate.opsForZSet()
+                    .removeRangeByScore(CacheKeys.getTaskTriggerTimeKey(), 0, currentTimeMillis);
         } catch (Exception e) {
             XxlJobLogger.log("开始任务定时执行失败", e);
         }
