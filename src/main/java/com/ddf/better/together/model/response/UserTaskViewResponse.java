@@ -3,23 +3,32 @@ package com.ddf.better.together.model.response;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import lombok.Data;
 
 /**
- * <p>用户任务定义响应类</p >
+ * <p>
+ * 用户任务视图响应类
+ * </p>
  *
- * @author Snowball
- * @version 1.0
- * @date 2021/04/11 21:18
+ * @author mybatis-plus-generator
+ * @since 2021-04-09
  */
 @Data
-public class UserTaskDefinitionResponse {
+public class UserTaskViewResponse implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     /**
      * id
      */
     private Long id;
+
+    /**
+     * 任务视图id,当前表关联时使用这个字段
+     */
+    private Long userTaskViewId;
 
     /**
      * 任务创建人
@@ -43,7 +52,7 @@ public class UserTaskDefinitionResponse {
     private Integer cycle;
 
     /**
-     * 任务周期类型
+     * 任务周期类型名称
      */
     private String cycleName;
 
@@ -84,12 +93,24 @@ public class UserTaskDefinitionResponse {
     private String supervisedUid;
 
     /**
-     * 0 站外奖励，即用文案描述奖励内容，由任务完成者来确认最终任务奖励完成情况	1 积分奖励， 即完成任务有多少积分	2 递进型积分奖励， 递进型的任务奖励，由任务制定者指定奖励等级，每个等级不同的积分奖励，最终由任务制定者或任务监督人来确认奖励等级。
+     * 0 站外奖励，即用文案描述奖励内容，由任务完成者来确认最终任务奖励完成情况	1 积分奖励， 即完成任务有多少积分	2 递进型积分奖励， 递进型的任务奖励，由任务制定者指定奖励等级，每个等级不同的积分奖励，最终由任务制定者或任务监督人来确认奖励等级。	
      */
     private Integer rewardType;
 
     /**
-     * 任务奖励类型
+     * 奖励类型名称
      */
     private String rewardTypeName;
+
+    /**
+     * 任务状态
+     * 0 进行中 1 任务超时（即时间到了，但是任务双方没进行任务操作） 2 任务完成 3 任务失败 4 奖励确认中 5 奖励完成
+     */
+    private Integer status;
+
+    /**
+     * 任务状态名称
+     */
+    private String statusName;
+
 }

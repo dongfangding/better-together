@@ -2,7 +2,10 @@ package com.ddf.better.together.convert.mapper;
 
 import com.ddf.better.together.model.entity.UserTaskDefinition;
 import com.ddf.better.together.model.entity.UserTaskView;
+import com.ddf.better.together.model.response.UserTaskViewResponse;
+import java.util.List;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;
 
@@ -26,4 +29,26 @@ public interface UserTaskViewMapperConvert {
      */
     @Mappings({})
     UserTaskView convert(UserTaskDefinition userTaskDefinition);
+
+    /**
+     * 实体转换回响应类
+     *
+     * @param userTaskView
+     * @return
+     */
+    @Mappings({
+            @Mapping(target = "cycleName", expression = "java(com.ddf.better.together.constants.enumeration.UserTaskCycleEnum.instanceOfCodeDefaultUnknown(userTaskView.getCycle()).getDesc())"),
+            @Mapping(target = "rewardTypeName", expression = "java(com.ddf.better.together.constants.enumeration.UserTaskRewardTypeEnum.instanceOfCodeDefaultUnknown(userTaskView.getRewardType()).getDesc())"),
+            @Mapping(target = "statusName", expression = "java(com.ddf.better.together.constants.enumeration.UserTaskViewStatusEnum.instanceOfCodeDefaultUnknown(userTaskView.getStatus()).getDesc())"),
+    })
+    UserTaskViewResponse convert(UserTaskView userTaskView);
+
+    /**
+     * 列表转换
+     *
+     * @param userTaskView
+     * @return
+     */
+    @Mappings({})
+    List<UserTaskViewResponse> convert(List<UserTaskView> userTaskView);
 }

@@ -1,5 +1,8 @@
 package com.ddf.better.together.model.response;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import lombok.Data;
@@ -42,6 +45,8 @@ public class UserPartnerApplyResponse implements Serializable {
     /**
      * 发起时间
      */
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime applyTime;
 
     /**
@@ -57,6 +62,8 @@ public class UserPartnerApplyResponse implements Serializable {
     /**
      * 处理时间
      */
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime dealTime;
 
 
