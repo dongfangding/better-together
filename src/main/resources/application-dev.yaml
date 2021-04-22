@@ -9,7 +9,7 @@ zk_addr: localhost:2181,localhost:2182,localhost:2183
 # mysql
 mysql_host: localhost
 mysql_port: 3306
-mysql_db: boot-quick
+mysql_db: better-together
 mysql_username: username
 mysql_password: password
 
