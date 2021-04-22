@@ -1,7 +1,7 @@
 package com.ddf.better.together.business.impl;
 
 import com.ddf.better.together.business.UserTaskViewRewardBizService;
-import com.ddf.better.together.model.entity.UserTaskViewReward;
+import com.ddf.better.together.convert.mapper.UserTaskViewRewardMapperConvert;
 import com.ddf.better.together.model.response.UserTaskViewRewardResponse;
 import com.ddf.better.together.service.IUserTaskViewRewardService;
 import java.util.List;
@@ -32,7 +32,6 @@ public class UserTaskViewRewardBizServiceImpl implements UserTaskViewRewardBizSe
      */
     @Override
     public List<UserTaskViewRewardResponse> taskRewards(Long userTaskViewId) {
-        final List<UserTaskViewReward> taskRewards = userTaskViewRewardService.getByTaskViewId(userTaskViewId);
-        return null;
+        return UserTaskViewRewardMapperConvert.INSTANCE.convert(userTaskViewRewardService.getByTaskViewId(userTaskViewId));
     }
 }
