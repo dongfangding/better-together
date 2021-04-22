@@ -13,6 +13,11 @@ mysql_db: better-together
 mysql_username: develop
 mysql_password: 12345678
 
+# rabbitmq相关
+rabbit_address: www.snowball.fans:5672
+rabbit_username: guest
+rabbit_password: guest
+
 # rocket name-server地址
 rocketmq_name_server: www.snowball.fans:9876
 
@@ -21,29 +26,20 @@ xxl_admin_addresses: http://www.snowball.fans:8805
 xxl_admin_access_token: xxl_develop
 
 ## qq邮箱服务
-mail_server_username: username
-mail_server_password: password
+mail_server_username: 1041765757@qq.com
+mail_server_password: gotartrfwuytbcji
 
-## oss
-oss_endpoint: wait_fill
-oss_accessKeyId: wait_fill
-oss_accessKeySecret: wait_fill
-oss_secret: false
-oss_stsEndpoint: wait_fill
-oss_roleArn: wait_fill
+## jwt
+jwt_secret: WoshiyigefenshuajiangfenshuabenlingqiangwoyaobanaxinfangzishuadegengpiaoliangshualefangziyoushuangqiangaiyawodexiaobizibianyabianleYang
 
-# jwt
-jwt_secret: wait_fill
-
-# 动态RSA
-rsa_primaryKey: wait_fill
-rsa_publicKey: wait_fill
+## 动态RSA
+rsa_primaryKey: MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAIPT0VbUrdYMIX//tgHgaMh9PUtqG6R/lNOvIl9LR6Mbc5J03qjvLlu2IifHFbFonm6XguZG4LZ4H3hRkX9fC4qSaQR1vZBOvS1aNLRyvMZudISJygiag1qJOQMEwrb8JUZkP7NMpBNjYpmF344+25Il3axRnd1oVR4Hhp4tqEe1AgMBAAECgYBYv0i3BAbjitcirKuDJ+hi0K1rD8v8OkefGtAxByT7EYgEmNktMZgr9bmYvdZE0QGXwjhFfoHZVZUaEw+4h+vkJrXxv2FQHqTSL8fDeL4jggNO3YYpLFoq9bvwWeqDJ3vvVkJEbNycfoE6iXv91mUM3hb7ie1NlvWYOJtiAxf0AQJBAOzyLcea/8Au8nVnJrVstpVaItkib7pT/9w2BDAe821JTXsmUCGw47LpYHZos6G8pR9Hz8VRaj99z8Z5xa2fe2ECQQCObaUe0n67ddr3OExVF9LyFVEdGzvuOwJjQi6/URvhrQDV31kld2z9lqV6p2l6JpDpmQIwPsJTS7qbLLhjGqDVAkEAz+Gh3I/Wdiw6OFqpkV6xydLs5AfccmMkBXW2sulUtLstKTBx+T0SaHNsWDZ/8xRo4krEtN87Ej01P3KyxiM3wQJAaJirF5ycR40AtmeY3zD00KXJAOgcNhMN6NkUvZmSMUS9BVPWAwbWetEkS5QgiP1DlNmyWr3sNgG6U/UeoGFQ1QJAZief8zE0C5jCmWf7VwfAJCSd+r+BVcSCpUxskc3gnhfG6j+ImAirhXIY+ld8rArmGl4UPkQfapBphUJslWLpLg==
+rsa_publicKey: MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCD09FW1K3WDCF//7YB4GjIfT1Lahukf5TTryJfS0ejG3OSdN6o7y5btiInxxWxaJ5ul4LmRuC2eB94UZF/XwuKkmkEdb2QTr0tWjS0crzGbnSEicoImoNaiTkDBMK2/CVGZD+zTKQTY2KZhd+OPtuSJd2sUZ3daFUeB4aeLahHtQIDAQAB
 
 ## druid
-druid_stat_enable: false
-druid_state_username: wait_fill
-druid_state_password: wait_fill
-
+druid_stat_enable: true
+druid_state_username: admin
+druid_state_password: 123456
 
 spring:
   datasource:

@@ -2,6 +2,7 @@ package com.ddf.better.together.convert.mapper;
 
 import com.ddf.better.together.model.entity.UserTaskDefinitionReward;
 import com.ddf.better.together.model.entity.UserTaskViewReward;
+import com.ddf.better.together.model.response.UserTaskViewRewardResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
@@ -29,4 +30,17 @@ public interface UserTaskViewRewardMapperConvert {
             @Mapping(target = "id", ignore = true)
     })
     UserTaskViewReward convert(UserTaskDefinitionReward userTaskDefinitionReward);
+
+
+    /**
+     * 转换
+     *
+     * @param userTaskViewReward
+     * @return
+     */
+    @Mappings({
+            @Mapping(target = "typeName", expression = "java(com.ddf.better.together.constants.enumeration.UserTaskCycleEnum.instanceOfCodeDefaultUnknown(userTaskViewReward.get()).getDesc())"),
+    })
+    UserTaskViewRewardResponse convert(UserTaskViewReward userTaskViewReward);
+
 }

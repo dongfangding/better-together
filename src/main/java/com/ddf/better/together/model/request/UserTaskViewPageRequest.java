@@ -26,6 +26,11 @@ public class UserTaskViewPageRequest implements PageRequest {
     private String uid;
 
     /**
+     * 任务监督人
+     */
+    private String supervisedUid;
+
+    /**
      * 任务名称
      */
     private String name;

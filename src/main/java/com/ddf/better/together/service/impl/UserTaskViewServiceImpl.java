@@ -38,8 +38,14 @@ public class UserTaskViewServiceImpl extends ServiceImpl<UserTaskViewMapper, Use
     @Override
     public Page<UserTaskView> pageList(UserTaskViewPageRequest request) {
         final LambdaQueryWrapper<UserTaskView> wrapper = Wrappers.lambdaQuery();
-        // 强制条件
-        wrapper.eq(UserTaskView::getUid, request.getUid());
+        if (StrUtil.isNotBlank(request.getUid())) {
+            wrapper.eq(UserTaskView::getUid, request.getUid());
+        }
+
+        if (StrUtil.isNotBlank(request.getSupervisedUid())) {
+            wrapper.eq(UserTaskView::getSupervisedUid, request.getSupervisedUid());
+        }
+
         if (StrUtil.isNotBlank(request.getName())) {
             wrapper.likeLeft(UserTaskView::getName, request.getName());
         }
@@ -63,6 +69,8 @@ public class UserTaskViewServiceImpl extends ServiceImpl<UserTaskViewMapper, Use
         if (Objects.nonNull(request.getStatus())) {
             wrapper.eq(UserTaskView::getStatus, request.getStatus().getCode());
         }
+
+        wrapper.orderByDesc(UserTaskView::getId);
 
         return page(PageUtil.toMybatis(request), wrapper);
     }

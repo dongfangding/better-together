@@ -45,4 +45,17 @@ public class UserTaskViewBizServiceImpl implements UserTaskViewBizService {
         final Page<UserTaskView> page = userTaskViewService.pageList(request);
         return PageUtil.convertMybatis(page, UserTaskViewMapperConvert.INSTANCE::convert);
     }
+
+    /**
+     * 用户监督的任务分页查询
+     *
+     * @param request
+     * @return
+     */
+    @Override
+    public PageResult<UserTaskViewResponse> mySupervisedTaskPageList(UserTaskViewPageRequest request) {
+        request.setSupervisedUid(UserContextUtil.getUserId());
+        final Page<UserTaskView> page = userTaskViewService.pageList(request);
+        return PageUtil.convertMybatis(page, UserTaskViewMapperConvert.INSTANCE::convert);
+    }
 }

@@ -2,6 +2,7 @@ package com.ddf.better.together.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.ddf.better.together.model.entity.UserTaskViewReward;
+import java.util.List;
 
 /**
  * <p>
@@ -12,5 +13,13 @@ import com.ddf.better.together.model.entity.UserTaskViewReward;
  * @since 2021-04-11
  */
 public interface IUserTaskViewRewardService extends IService<UserTaskViewReward> {
+
+    /**
+     * 查询指定任务的奖励
+     *
+     * @param userTaskViewId
+     * @return
+     */
+    List<UserTaskViewReward> getByTaskViewId(Long userTaskViewId);
 
 }

@@ -14,10 +14,20 @@ import com.ddf.boot.common.core.model.PageResult;
 public interface UserTaskViewBizService {
 
     /**
-     * 用户任务视图分页查询
+     * 用户待完成任务视图分页查询
      *
      * @param request
      * @return
      */
     PageResult<UserTaskViewResponse> myTaskPageList(UserTaskViewPageRequest request);
+
+
+    /**
+     * 用户监督的任务分页查询
+     *
+     * @param request
+     * @return
+     */
+    PageResult<UserTaskViewResponse> mySupervisedTaskPageList(UserTaskViewPageRequest request);
+
 }
