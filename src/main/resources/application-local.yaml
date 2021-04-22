@@ -203,8 +203,8 @@ customs: # 自定义的属性最好都写在custom前缀下，方便辨认
       endpoint: dysmsapi.aliyuncs.com
       protocol: HTTP
       secretAccessKey: true
-      accessKeyId: d86b0b8b1c525ee7c4ab54592902baee0fdbba93e20bff5a1016608b9c41053c
-      accessKeySecret: 57a8e5c1c3280f3e72c754f4b5a2e326e663ca94414f7ec13a67c2fafd9886ff
+      accessKeyId: ${oss_accessKeyId}
+      accessKeySecret: ${oss_accessKeySecret}
       sinaName: ABC商城
       templateCode: SMS_204455240
       useRandomCode: true
