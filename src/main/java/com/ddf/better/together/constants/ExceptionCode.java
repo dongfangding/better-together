@@ -38,7 +38,17 @@ public enum ExceptionCode implements BaseCallbackCode {
 
     RESOURCE_PROP_ERROR("10011", "资源属性有误，无法上传"),
 
-    TASK_NAME_ALREADY_EXIST("10012", "任务名称已存在")
+    TASK_NAME_ALREADY_EXIST("10012", "任务名称已存在"),
+
+    TASK_VIEW_RECORD_NOT_EXIST("10013", "任务视图不存在"),
+
+    SUPERVISED_TASK_WAIT_SUPERVISED_USER("10014", "被监督的任务只能监督人完成哦"),
+
+    NOT_ALLOW_FINISHED_OTHERS_TASK_VIEW("10015", "不可以完成他人的任务"),
+
+    UPDATE_FINISHED_TASK_FAILURE("10016", "更新完成任务失败"),
+
+    UPDATE_OBTAIN_REWARD_FAILURE("10017", "更新获取奖励失败"),
 
     ;
 

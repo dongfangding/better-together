@@ -2,14 +2,19 @@ package com.ddf.better.together.service.impl;
 
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.ddf.better.together.constants.ExceptionCode;
+import com.ddf.better.together.constants.enumeration.UserTaskViewStatusEnum;
 import com.ddf.better.together.mapper.UserTaskViewMapper;
 import com.ddf.better.together.model.entity.UserTaskView;
 import com.ddf.better.together.model.request.UserTaskViewPageRequest;
 import com.ddf.better.together.service.IUserTaskViewService;
 import com.ddf.boot.common.core.util.PageUtil;
+import com.ddf.boot.common.core.util.PreconditionUtil;
+import java.time.LocalDateTime;
 import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +33,19 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor(onConstructor_={@Autowired})
 @Slf4j
 public class UserTaskViewServiceImpl extends ServiceImpl<UserTaskViewMapper, UserTaskView> implements IUserTaskViewService {
+
+    /**
+     * 根据userTaskViewId查找记录
+     *
+     * @param userTaskViewId
+     * @return
+     */
+    @Override
+    public UserTaskView getByUserTaskViewId(Long userTaskViewId) {
+        final LambdaQueryWrapper<UserTaskView> wrapper = Wrappers.lambdaQuery();
+        wrapper.eq(UserTaskView::getUserTaskViewId, userTaskViewId);
+        return getOne(wrapper);
+    }
 
     /**
      * 用户任务视图分页查询
@@ -73,5 +91,22 @@ public class UserTaskViewServiceImpl extends ServiceImpl<UserTaskViewMapper, Use
         wrapper.orderByDesc(UserTaskView::getId);
 
         return page(PageUtil.toMybatis(request), wrapper);
+    }
+
+    /**
+     * 完成任务
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public void finishedTask(Long id) {
+        final LambdaUpdateWrapper<UserTaskView> wrapper = Wrappers.lambdaUpdate();
+        wrapper.set(UserTaskView::getStatus, UserTaskViewStatusEnum.COMPLETE.getCode());
+        wrapper.set(UserTaskView::getFinishedTime, LocalDateTime.now());
+        wrapper.eq(UserTaskView::getId, id);
+        wrapper.eq(UserTaskView::getStatus, UserTaskViewStatusEnum.ING.getCode());
+        PreconditionUtil.checkArgument(
+                Objects.equals(Boolean.TRUE, update(wrapper)), ExceptionCode.UPDATE_FINISHED_TASK_FAILURE);
     }
 }

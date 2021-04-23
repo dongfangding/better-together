@@ -16,11 +16,28 @@ import com.ddf.better.together.model.request.UserTaskViewPageRequest;
 public interface IUserTaskViewService extends IService<UserTaskView> {
 
     /**
+     * 根据userTaskViewId查找记录
+     *
+     * @param userTaskViewId
+     * @return
+     */
+    UserTaskView getByUserTaskViewId(Long userTaskViewId);
+
+
+    /**
      * 用户任务视图分页查询
      *
      * @param request
      * @return
      */
     Page<UserTaskView> pageList(UserTaskViewPageRequest request);
+
+    /**
+     * 完成任务
+     *
+     * @param id
+     * @return
+     */
+    void finishedTask(Long id);
 
 }

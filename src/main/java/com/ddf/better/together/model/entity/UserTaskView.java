@@ -89,5 +89,9 @@ public class UserTaskView implements Serializable {
      */
     private Integer status;
 
+    /**
+     * 任务完成时间
+     */
+    private LocalDateTime finishedTime;
 
 }

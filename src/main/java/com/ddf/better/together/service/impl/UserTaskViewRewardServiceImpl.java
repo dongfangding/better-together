@@ -1,12 +1,16 @@
 package com.ddf.better.together.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.ddf.better.together.constants.ExceptionCode;
 import com.ddf.better.together.mapper.UserTaskViewRewardMapper;
 import com.ddf.better.together.model.entity.UserTaskViewReward;
 import com.ddf.better.together.service.IUserTaskViewRewardService;
+import com.ddf.boot.common.core.util.PreconditionUtil;
 import java.util.List;
+import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,5 +40,21 @@ public class UserTaskViewRewardServiceImpl extends ServiceImpl<UserTaskViewRewar
         final LambdaQueryWrapper<UserTaskViewReward> wrapper = Wrappers.lambdaQuery();
         wrapper.eq(UserTaskViewReward::getUserTaskViewId, userTaskViewId);
         return list(wrapper);
+    }
+
+    /**
+     * 获取奖励
+     *
+     * @param userTaskViewId
+     * @param idList
+     */
+    @Override
+    public void obtainReward(Long userTaskViewId, List<Long> idList) {
+        final LambdaUpdateWrapper<UserTaskViewReward> wrapper = Wrappers.lambdaUpdate();
+        wrapper.in(UserTaskViewReward::getId, idList)
+                .eq(UserTaskViewReward::getUserTaskViewId, userTaskViewId)
+                .set(UserTaskViewReward::getObtain, Boolean.TRUE);
+        PreconditionUtil.checkArgument(
+                Objects.equals(Boolean.TRUE, update(wrapper)), ExceptionCode.UPDATE_OBTAIN_REWARD_FAILURE);
     }
 }

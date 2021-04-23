@@ -1,5 +1,6 @@
 package com.ddf.better.together.business;
 
+import com.ddf.better.together.model.request.UserTaskViewFinishRequest;
 import com.ddf.better.together.model.request.UserTaskViewPageRequest;
 import com.ddf.better.together.model.response.UserTaskViewResponse;
 import com.ddf.boot.common.core.model.PageResult;
@@ -29,5 +30,13 @@ public interface UserTaskViewBizService {
      * @return
      */
     PageResult<UserTaskViewResponse> mySupervisedTaskPageList(UserTaskViewPageRequest request);
+
+    /**
+     * 完成任务并指定奖励
+     *
+     * @param request
+     * @return
+     */
+    Boolean finishedTask(UserTaskViewFinishRequest request);
 
 }
