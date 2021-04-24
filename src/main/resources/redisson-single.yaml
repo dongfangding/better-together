@@ -1,0 +1,19 @@
+# 单机redis配置
+singleServerConfig:
+  address: redis://${redis_host}:${redis_port}
+  # org.redisson.config.BaseConfig
+  password: ${redis_password}
+  database: 1
+  idleConnectionTimeout: 10000
+  connectTimeout: 10000
+  timeout: 3000
+  retryAttempts: 3
+  retryInterval: 1500
+  subscriptionsPerConnection: 5
+  clientName: null
+  keepAlive: false
+  tcpNoDelay: false
+  # org.redisson.config.SingleServerConfig
+  subscriptionConnectionMinimumIdleSize: 1
+  subscriptionConnectionPoolSize: 50
+  pingConnectionInterval: 0
