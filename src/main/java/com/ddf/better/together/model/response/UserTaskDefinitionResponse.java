@@ -3,6 +3,7 @@ package com.ddf.better.together.model.response;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import lombok.Data;
 
@@ -14,7 +15,9 @@ import lombok.Data;
  * @date 2021/04/11 21:18
  */
 @Data
-public class UserTaskDefinitionResponse {
+public class UserTaskDefinitionResponse implements Serializable {
+
+    private static final long serialVersionUID = 1516322558409231083L;
 
     /**
      * id
