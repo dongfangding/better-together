@@ -7,6 +7,7 @@ import com.ddf.better.together.convert.mapper.UserTaskViewMapperConvert;
 import com.ddf.better.together.model.entity.UserTaskView;
 import com.ddf.better.together.model.request.UserTaskViewFinishRequest;
 import com.ddf.better.together.model.request.UserTaskViewPageRequest;
+import com.ddf.better.together.model.request.UserTaskViewUnFinishRequest;
 import com.ddf.better.together.model.response.UserTaskViewResponse;
 import com.ddf.better.together.service.IUserTaskViewRewardService;
 import com.ddf.better.together.service.IUserTaskViewService;
@@ -73,7 +74,28 @@ public class UserTaskViewBizServiceImpl implements UserTaskViewBizService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Boolean finishedTask(UserTaskViewFinishRequest request) {
-        final UserTaskView taskView = userTaskViewService.getByUserTaskViewId(request.getUserTaskViewId());
+        final UserTaskView taskView = checkCanUpdateTaskStatus(request.getUserTaskViewId());
+        userTaskViewService.finishedTask(taskView.getId());
+        userTaskViewRewardService.obtainReward(request.getUserTaskViewId(), request.getRewardList());
+        return Boolean.TRUE;
+    }
+
+    @Override
+    public Boolean unfinishedTask(UserTaskViewUnFinishRequest request) {
+        final UserTaskView taskView = checkCanUpdateTaskStatus(request.getUserTaskViewId());
+        userTaskViewService.finishedTask(taskView.getId());
+        return Boolean.TRUE;
+    }
+
+
+    /**
+     * 获取并校验是否可修改任务状态
+     *
+     * @param userTaskViewId
+     * @return
+     */
+    private UserTaskView checkCanUpdateTaskStatus(Long userTaskViewId) {
+        final UserTaskView taskView = userTaskViewService.getByUserTaskViewId(userTaskViewId);
         PreconditionUtil.checkArgument(Objects.nonNull(taskView), ExceptionCode.TASK_VIEW_RECORD_NOT_EXIST);
 
         String currentUid = UserContextUtil.getUserId();
@@ -86,10 +108,6 @@ public class UserTaskViewBizServiceImpl implements UserTaskViewBizService {
             PreconditionUtil.checkArgument(
                     Objects.equals(currentUid, taskView.getUid()), ExceptionCode.NOT_ALLOW_FINISHED_OTHERS_TASK_VIEW);
         }
-
-        userTaskViewService.finishedTask(taskView.getId());
-        userTaskViewRewardService.obtainReward(request.getUserTaskViewId(), request.getRewardList());
-
-        return Boolean.TRUE;
+        return taskView;
     }
 }

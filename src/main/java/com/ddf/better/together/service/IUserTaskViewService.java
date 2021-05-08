@@ -40,4 +40,12 @@ public interface IUserTaskViewService extends IService<UserTaskView> {
      */
     void finishedTask(Long id);
 
+    /**
+     * 未完成任务
+     *
+     * @param id
+     * @return
+     */
+    void unFinishedTask(Long id);
+
 }

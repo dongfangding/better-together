@@ -2,6 +2,7 @@ package com.ddf.better.together.business;
 
 import com.ddf.better.together.model.request.UserTaskViewFinishRequest;
 import com.ddf.better.together.model.request.UserTaskViewPageRequest;
+import com.ddf.better.together.model.request.UserTaskViewUnFinishRequest;
 import com.ddf.better.together.model.response.UserTaskViewResponse;
 import com.ddf.boot.common.core.model.PageResult;
 
@@ -38,5 +39,13 @@ public interface UserTaskViewBizService {
      * @return
      */
     Boolean finishedTask(UserTaskViewFinishRequest request);
+
+    /**
+     * 标识任务未完成
+     *
+     * @param request
+     * @return
+     */
+    Boolean unfinishedTask(UserTaskViewUnFinishRequest request);
 
 }

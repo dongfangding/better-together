@@ -109,4 +109,20 @@ public class UserTaskViewServiceImpl extends ServiceImpl<UserTaskViewMapper, Use
         PreconditionUtil.checkArgument(
                 Objects.equals(Boolean.TRUE, update(wrapper)), ExceptionCode.UPDATE_FINISHED_TASK_FAILURE);
     }
+
+    /**
+     * 未完成任务
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public void unFinishedTask(Long id) {
+        final LambdaUpdateWrapper<UserTaskView> wrapper = Wrappers.lambdaUpdate();
+        wrapper.set(UserTaskView::getStatus, UserTaskViewStatusEnum.FAILURE.getCode());
+        wrapper.eq(UserTaskView::getId, id);
+        wrapper.eq(UserTaskView::getStatus, UserTaskViewStatusEnum.ING.getCode());
+        PreconditionUtil.checkArgument(
+                Objects.equals(Boolean.TRUE, update(wrapper)), ExceptionCode.UPDATE_FINISHED_TASK_FAILURE);
+    }
 }
