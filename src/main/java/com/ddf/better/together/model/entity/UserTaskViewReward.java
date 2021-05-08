@@ -3,6 +3,7 @@ package com.ddf.better.together.model.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.ddf.better.together.constants.enumeration.UserTaskViewRewardStatusEnum;
 import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -50,9 +51,10 @@ public class UserTaskViewReward implements Serializable {
     private Long rewardScore;
 
     /**
-     * 是否获得 0 否 1 是
+     * 状态
+     * @see UserTaskViewRewardStatusEnum
      */
-    private Boolean obtain;
+    private Integer status;
 
 
 }
