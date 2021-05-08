@@ -30,4 +30,12 @@ public interface IUserTaskViewRewardService extends IService<UserTaskViewReward>
      */
     void obtainReward(Long userTaskViewId, List<Long> idList);
 
+    /**
+     * 领取奖励
+     *
+     * @param userTaskViewId
+     * @param idList
+     */
+    void receiveReward(Long userTaskViewId, List<Long> idList);
+
 }

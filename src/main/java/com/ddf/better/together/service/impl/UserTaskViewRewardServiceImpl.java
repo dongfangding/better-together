@@ -5,10 +5,12 @@ import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ddf.better.together.constants.ExceptionCode;
+import com.ddf.better.together.constants.enumeration.UserTaskViewRewardStatusEnum;
 import com.ddf.better.together.mapper.UserTaskViewRewardMapper;
 import com.ddf.better.together.model.entity.UserTaskViewReward;
 import com.ddf.better.together.service.IUserTaskViewRewardService;
 import com.ddf.boot.common.core.util.PreconditionUtil;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 import lombok.RequiredArgsConstructor;
@@ -53,8 +55,27 @@ public class UserTaskViewRewardServiceImpl extends ServiceImpl<UserTaskViewRewar
         final LambdaUpdateWrapper<UserTaskViewReward> wrapper = Wrappers.lambdaUpdate();
         wrapper.in(UserTaskViewReward::getId, idList)
                 .eq(UserTaskViewReward::getUserTaskViewId, userTaskViewId)
-                .set(UserTaskViewReward::getObtain, Boolean.TRUE);
+                .eq(UserTaskViewReward::getStatus, UserTaskViewRewardStatusEnum.NOT_OBTAIN.getCode())
+                .set(UserTaskViewReward::getStatus, UserTaskViewRewardStatusEnum.OBTAINED.getCode());
         PreconditionUtil.checkArgument(
                 Objects.equals(Boolean.TRUE, update(wrapper)), ExceptionCode.UPDATE_OBTAIN_REWARD_FAILURE);
+    }
+
+    /**
+     * 领取奖励
+     *
+     * @param userTaskViewId
+     * @param idList
+     */
+    @Override
+    public void receiveReward(Long userTaskViewId, List<Long> idList) {
+        final LambdaUpdateWrapper<UserTaskViewReward> wrapper = Wrappers.lambdaUpdate();
+        wrapper.in(UserTaskViewReward::getId, idList)
+                .eq(UserTaskViewReward::getUserTaskViewId, userTaskViewId)
+                // 这里没有使用乐观锁条件状态必须是已获取奖励的原因是有些奖励可以直接从未获取更新到已领取
+                .set(UserTaskViewReward::getStatus, UserTaskViewRewardStatusEnum.RECEIVED.getCode())
+                .set(UserTaskViewReward::getReceiveTime, LocalDateTime.now());
+        PreconditionUtil.checkArgument(
+                Objects.equals(Boolean.TRUE, update(wrapper)), ExceptionCode.RECEIVE_REWARD_FAILURE);
     }
 }

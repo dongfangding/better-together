@@ -3,8 +3,10 @@ package com.ddf.better.together.model.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.ddf.better.together.constants.enumeration.UserTaskRewardTypeEnum;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Objects;
 import lombok.Data;
 
 /**
@@ -93,5 +95,14 @@ public class UserTaskView implements Serializable {
      * 任务完成时间
      */
     private LocalDateTime finishedTime;
+
+    /**
+     * 是否可以直接领取奖励，如果是的话，奖励直接到账，否则需要任务完成人自己确认是否奖励已收到
+     *
+     * @return
+     */
+    public boolean canReceiveReward() {
+        return Objects.equals(UserTaskRewardTypeEnum.OUT_SITE.getCode(), rewardType);
+    }
 
 }

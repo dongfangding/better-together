@@ -76,7 +76,12 @@ public class UserTaskViewBizServiceImpl implements UserTaskViewBizService {
     public Boolean finishedTask(UserTaskViewFinishRequest request) {
         final UserTaskView taskView = checkCanUpdateTaskStatus(request.getUserTaskViewId());
         userTaskViewService.finishedTask(taskView.getId());
-        userTaskViewRewardService.obtainReward(request.getUserTaskViewId(), request.getRewardList());
+        if (taskView.canReceiveReward()) {
+            userTaskViewRewardService.receiveReward(request.getUserTaskViewId(), request.getRewardList());
+            // todo 积分处理
+        } else {
+            userTaskViewRewardService.obtainReward(request.getUserTaskViewId(), request.getRewardList());
+        }
         return Boolean.TRUE;
     }
 

@@ -57,24 +57,12 @@ public class UserTaskDefinitionServiceImpl extends ServiceImpl<UserTaskDefinitio
         final LambdaQueryWrapper<UserTaskDefinition> wrapper = Wrappers.lambdaQuery();
         wrapper.eq(UserTaskDefinition::getUid, request.getUid());
         wrapper.orderByDesc(UserTaskDefinition::getCreateTime);
-        if (StrUtil.isNotBlank(request.getName())) {
-            wrapper.likeLeft(UserTaskDefinition::getName, request.getName());
-        }
-        if (Objects.nonNull(request.getCycle())) {
-            wrapper.eq(UserTaskDefinition::getCycle, request.getCycle());
-        }
-        if (Objects.nonNull(request.getActive())) {
-            wrapper.eq(UserTaskDefinition::getActive, request.getActive());
-        }
-        if (Objects.nonNull(request.getSupervised())) {
-            wrapper.eq(UserTaskDefinition::getSupervised, request.getSupervised());
-        }
-        if (Objects.nonNull(request.getSupervisedUid())) {
-            wrapper.eq(UserTaskDefinition::getSupervisedUid, request.getSupervisedUid());
-        }
-        if (Objects.nonNull(request.getRewardType())) {
-            wrapper.eq(UserTaskDefinition::getRewardType, request.getRewardType());
-        }
+        wrapper.likeLeft(StrUtil.isNotBlank(request.getName()), UserTaskDefinition::getName, request.getName());
+        wrapper.eq(Objects.nonNull(request.getCycle()), UserTaskDefinition::getCycle, request.getCycle());
+        wrapper.eq(Objects.nonNull(request.getActive()), UserTaskDefinition::getActive, request.getActive());
+        wrapper.eq(Objects.nonNull(request.getSupervised()), UserTaskDefinition::getSupervised, request.getSupervised());
+        wrapper.eq(Objects.nonNull(request.getSupervisedUid()), UserTaskDefinition::getSupervisedUid, request.getSupervisedUid());
+        wrapper.eq(Objects.nonNull(request.getRewardType()), UserTaskDefinition::getRewardType, request.getRewardType());
         return page(page, wrapper);
     }
 }

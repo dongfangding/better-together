@@ -50,6 +50,8 @@ public enum ExceptionCode implements BaseCallbackCode {
 
     UPDATE_OBTAIN_REWARD_FAILURE("10017", "更新获取奖励失败"),
 
+    RECEIVE_REWARD_FAILURE("10018", "更新领取奖励失败"),
+
     ;
 
     private final String code;

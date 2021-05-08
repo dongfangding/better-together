@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.ddf.better.together.constants.enumeration.UserTaskViewRewardStatusEnum;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -56,5 +57,9 @@ public class UserTaskViewReward implements Serializable {
      */
     private Integer status;
 
+    /**
+     * 奖励领取时间
+     */
+    private LocalDateTime receiveTime;
 
 }
