@@ -1,3 +1,9 @@
+# 在spring-boot应用中（注意不是spring-cloud），开启这个可以让spring-boot应用具备在启动前就将外部配置加载到spring环境中的能力， 即可通过外部配置各种数据源了
+nacos:
+  config:
+    bootstrap:
+      enable: true
+
 server:
   port: 8089
   tomcat:
@@ -6,60 +12,14 @@ server:
     min-spare-threads: 20
   servlet:
     context-path: /better-together
+
 spring:
   profiles:
-    active: local
+    active: dev
   application:
     name: better-together
-  jackson:
-    time-zone: GMT+8
-    default-property-inclusion: ALWAYS
-    date-format: yyyy-MM-dd HH:mm:ss
-    locale: zh_CN
-
-customs: # 自定义的属性最好都写在custom前缀下，方便辨认
-  global-properties:
-    snowflakeWorkerId: 1      # worker Id can't be greater than 31 or less than 0
-    snowflakeDataCenterId: 1  # dataCenterId Id can't be greater than 31 or less than 0
-    ignoreErrorTraceProfile: # 过滤将异常堆栈信息输出打前端接口返回值的环境
-      - pre
-      - prod
-mybatis-plus:
-  global-config:
-    db-config:
-      logic-not-delete-value: 0
-      logic-delete-value: null
-      logic-delete-field: isDel
-  configuration:
-    map-underscore-to-camel-case: true
-    cache-enabled: true
-    # https://mp.baomidou.com/config/#localcachescope
-    localCacheScope: STATEMENT
-  ## mapper.xml文件所在路径
-  mapper-locations: classpath:mapper/*.xml
 
 logging:
   level:
     root: info
     com.ddf.boot.common.log.AccessLogAspect: debug
-
-management:
-  health:
-    redis:
-      enabled: false
-    rabbit:
-      enabled: false
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-    jmx:
-      exposure:
-        include: "*"
-  endpoint:
-    health:
-      show-details: always
-    shutdown:
-      enabled: true
-    jolokia:
-      enabled: true

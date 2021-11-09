@@ -1,48 +1,31 @@
-# redis相关
-redis_host: localhost
-redis_port: 6379
-redis_password: password
+nacos:
+  config:
+    server-addr: ${nocos_server}
+    username: ${nacos_username}
+    password: ${nacos_password}
+    auto-refresh: true
+    config-retry-time: 3000
+    namespace: common
+    group: DEFAULT_GROUP
+    enable-remote-sync-config: false
+    type: yaml
+    data-ids: common-server,common-mybatis-plus,common-datasource,common-redis,common-mail,common-rabbitmq,common-rocketmq,common-mongo,common-es,common-elasticjob,common-xxl-job,common-jwt,common-global-properties,common-ext-oss,common-ext-sms,common-websocket,common-distributed-lock,common-ids
+    ext-config:
+      - namespace: spring-boot-quick
+        dataId: property-source
+        group: dev
+        type: properties
+        auto-refresh: true
 
-# zookeeper地址,host:port, 多个用,隔开
-zk_addr: localhost:2181,localhost:2182,localhost:2183
+      - dataId: config-properties
+        type: properties
+        auto-refresh: true
 
-# mysql
-mysql_host: localhost
-mysql_port: 3306
-mysql_db: better-together
-mysql_username: username
-mysql_password: password
+      - dataId: config-server
+        type: yaml
+        auto-refresh: true
 
-# rocket name-server地址
-rocketmq_name_server: localhost:9876
 
-# xxl-job
-xxl_admin_addresses: http://localhost:8805
-xxl_admin_access_token: token
-
-## qq邮箱服务
-mail_server_username: username
-mail_server_password: password
-
-## oss
-oss_endpoint: wait_fill
-oss_accessKeyId: wait_fill
-oss_accessKeySecret: wait_fill
-oss_secret: false
-oss_stsEndpoint: wait_fill
-oss_roleArn: wait_fill
-
-# jwt
-jwt_secret: wait_fill
-
-# 动态RSA
-rsa_primaryKey: wait_fill
-rsa_publicKey: wait_fill
-
-## druid
-druid_stat_enable: false
-druid_state_username: wait_fill
-druid_state_password: wait_fill
 
 spring:
   datasource:
@@ -81,9 +64,9 @@ spring:
       stat-view-servlet:
         enabled: true
         url-pattern: /druid/*
-        reset-enable: ${druid_stat_enable}
-        login-username: ${druid_state_username}
-        login-password: ${druid_state_password}
+        reset-enable: true
+        login-username: admin
+        login-password: 123456
         allow:
 
   # 国际化资源文件
@@ -93,13 +76,14 @@ spring:
 
   redis:
     database: 1
-    timeout: 3000ms
+    timeout: 1000ms
     host: ${redis_host}
     port: ${redis_port}
     password: ${redis_password}
     redisson:
       # com.ddf.boot.common.redis.config.RedisCustomizeAutoConfiguration
       codec: org.redisson.codec.JsonJacksonCodec
+
   mail:
     username: ${mail_server_username}                # 用来验证授权的邮件用户名
     password: ${mail_server_password}                # 根据QQ邮箱设置-账户里生成的第三方登陆授权码，可用来代替密码登陆
@@ -160,8 +144,8 @@ customs: # 自定义的属性最好都写在custom前缀下，方便辨认
       endpoint: dysmsapi.aliyuncs.com
       protocol: HTTP
       secretAccessKey: true
-      accessKeyId: d86b0b8b1c525ee7c4ab54592902baee0fdbba93e20bff5a1016608b9c41053c
-      accessKeySecret: 57a8e5c1c3280f3e72c754f4b5a2e326e663ca94414f7ec13a67c2fafd9886ff
+      accessKeyId: ${oss_accessKeyId}
+      accessKeySecret: ${oss_accessKeySecret}
       sinaName: ABC商城
       templateCode: SMS_204455240
       useRandomCode: true
@@ -190,14 +174,3 @@ customs: # 自定义的属性最好都写在custom前缀下，方便辨认
       - path: /favicon.ico
       - path: /sysUser/generateCaptcha
       - path: /sysUser/loginByPassword
-  rsa:
-    primaryKey: ${rsa_primaryKey}
-    publicKey: ${rsa_publicKey}
-
-leaf:
-  name: com.sankuai.leaf.opensource.snowflake
-  segment:
-    enable: false
-  snowflake:
-    enable: true
-    address: ${zk_addr}
