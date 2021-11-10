@@ -16,7 +16,7 @@ import com.ddf.better.together.service.IUserInfoService;
 import com.ddf.boot.common.core.config.AuthenticationProperties;
 import com.ddf.boot.common.core.util.PreconditionUtil;
 import com.ddf.boot.common.core.util.SecureUtil;
-import com.ddf.boot.common.ids.helper.SnowflakeServiceHelper;
+import com.ddf.common.ids.service.api.IdsApi;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -41,7 +41,7 @@ public class UserInfoBizServiceImpl implements UserInfoBizService {
 
     private final IUserInfoService userInfoService;
 
-    private final SnowflakeServiceHelper snowflakeServiceHelper;
+    private final IdsApi idsApi;
 
     private final StringRedisTemplate stringRedisTemplate;
 
@@ -91,7 +91,7 @@ public class UserInfoBizServiceImpl implements UserInfoBizService {
         }
 
         UserInfo userInfo = new UserInfo();
-        userInfo.setUid(snowflakeServiceHelper.getStringId());
+        userInfo.setUid(idsApi.getSnowflakeId());
         userInfo.setEmail(request.getEmail());
         userInfo.setNickname(request.getNickname());
         userInfo.setRegisterTime(LocalDateTime.now());
