@@ -48,7 +48,7 @@ public class CommonServiceImpl implements CommonService {
 
         mailUtil.sendMimeMail(
                 new String[] {request.getEmail()}, MailConst.REGISTRY_CODE_EMAIL_SUBJECT,
-                MessageFormat.format(MailConst.REGISTRY_CODE_EMAIL, randomCode)
+                MessageFormat.format(MailConst.REGISTRY_CODE_EMAIL, randomCode + "")
         );
 
         return Boolean.TRUE;

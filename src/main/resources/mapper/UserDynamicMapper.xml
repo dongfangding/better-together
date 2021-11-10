@@ -33,8 +33,8 @@
                ud.location
         from user_dynamic ud inner join user_info ui on ud.uid = ui.uid
         <where>
-            ud.uid = #{request.uid}
-        <if test="request.uid != request.currentUid or request.currentUid == null">
+            ud.uid = #{query.uid}
+        <if test="query.uid != query.currentUid or query.currentUid == null">
             and ud.view_level = ${@com.ddf.better.together.constants.enumeration.UserDynamicViewLevelEnum@FRIEND.getCode()}
         </if>
         </where>

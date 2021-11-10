@@ -1,18 +1,18 @@
-package com.ddf.better.together.model.request;
+package com.ddf.better.together.model.query;
 
 import com.ddf.boot.common.core.model.PageRequest;
 import javax.validation.constraints.NotBlank;
 import lombok.Data;
 
 /**
- * <p>查询用户动态</p >
+ * <p>description</p >
  *
  * @author Snowball
  * @version 1.0
- * @date 2021/04/05 21:12
+ * @date 2021/11/10 15:54
  */
 @Data
-public class SearchUserDynamicRequest implements PageRequest {
+public class SearchUserDynamicQuery implements PageRequest {
 
     /**
      * 用户uid
@@ -30,4 +30,10 @@ public class SearchUserDynamicRequest implements PageRequest {
      */
     private Integer pageSize;
 
+
+    // ----------------------不需要客户端传的参数----------------
+    /**
+     * 当前用户uid，客户端不需要传
+     */
+    private String currentUid;
 }

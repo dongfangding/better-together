@@ -1,7 +1,7 @@
 package com.ddf.better.together.service;
 
 import com.ddf.better.together.ApplicationTest;
-import com.ddf.better.together.model.request.SearchUserDynamicRequest;
+import com.ddf.better.together.model.query.SearchUserDynamicQuery;
 import com.ddf.boot.common.core.model.UserClaim;
 import com.ddf.boot.common.core.util.JsonUtil;
 import com.ddf.boot.common.core.util.UserContextUtil;
@@ -23,10 +23,10 @@ public class IUserDynamicServiceTest extends ApplicationTest {
     @Test
     public void testSearchUserDynamic() {
         UserContextUtil.setUserClaim(new UserClaim().setUserId("2222"));
-        final SearchUserDynamicRequest request = new SearchUserDynamicRequest();
-        request.setUid("1377909795931066461");
-        request.setPageNum(2);
-        request.setPageSize(10);
-        System.out.println(JsonUtil.asString(userDynamicService.searchUserDynamic(request)));
+        final SearchUserDynamicQuery query = new SearchUserDynamicQuery();
+        query.setUid("1377909795931066461");
+        query.setPageNum(2);
+        query.setPageSize(10);
+        System.out.println(JsonUtil.asString(userDynamicService.searchUserDynamic(query)));
     }
 }

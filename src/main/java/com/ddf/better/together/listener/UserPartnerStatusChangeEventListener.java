@@ -8,7 +8,7 @@ import com.ddf.better.together.event.UserPartnerStatusChangeEvent;
 import com.ddf.better.together.model.dto.UserDynamicDTO;
 import com.ddf.better.together.model.dto.UserPartnerStatusChangeDTO;
 import com.ddf.better.together.model.entity.UserDynamicReceiveBox;
-import com.ddf.better.together.model.request.SearchUserDynamicRequest;
+import com.ddf.better.together.model.query.SearchUserDynamicQuery;
 import com.ddf.better.together.service.IUserDynamicReceiveBoxService;
 import com.ddf.better.together.service.IUserDynamicService;
 import com.ddf.boot.common.core.model.PageRequest;
@@ -61,11 +61,11 @@ public class UserPartnerStatusChangeEventListener implements ApplicationListener
             List<UserDynamicReceiveBox> saveList = new ArrayList<>();
 
             // 分别查询伙伴双方各自发送的仅好友可见的动态
-            final SearchUserDynamicRequest request = new SearchUserDynamicRequest();
-            request.setUid(dto.getUid());
-            request.setPageNum(PageRequest.DEFAULT_PAGE_NUM);
-            request.setPageSize(BizRuleConst.NEW_PARTNER_DYNAMIC_FETCH_NUM);
-            final Page<UserDynamicDTO> page = userDynamicService.searchUserDynamic(request);
+            final SearchUserDynamicQuery query = new SearchUserDynamicQuery();
+            query.setUid(dto.getUid());
+            query.setPageNum(PageRequest.DEFAULT_PAGE_NUM);
+            query.setPageSize(BizRuleConst.NEW_PARTNER_DYNAMIC_FETCH_NUM);
+            final Page<UserDynamicDTO> page = userDynamicService.searchUserDynamic(query);
             if (CollectionUtil.isNotEmpty(page.getRecords())) {
                 for (UserDynamicDTO record : page.getRecords()) {
                     final UserDynamicReceiveBox box = new UserDynamicReceiveBox();
@@ -78,8 +78,8 @@ public class UserPartnerStatusChangeEventListener implements ApplicationListener
             log.info("增加用户[{}]收件箱中[{}]的动态数据{}条", dto.getPartnerUid(), dto.getUid(), page.getRecords().size());
 
             // 简单粗暴先查询两次
-            request.setUid(dto.getPartnerUid());
-            final Page<UserDynamicDTO> user2Page = userDynamicService.searchUserDynamic(request);
+            query.setUid(dto.getPartnerUid());
+            final Page<UserDynamicDTO> user2Page = userDynamicService.searchUserDynamic(query);
             if (CollectionUtil.isNotEmpty(user2Page.getRecords())) {
                 for (UserDynamicDTO record : user2Page.getRecords()) {
                     final UserDynamicReceiveBox box = new UserDynamicReceiveBox();

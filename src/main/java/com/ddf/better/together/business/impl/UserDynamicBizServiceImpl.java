@@ -5,6 +5,7 @@ import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ddf.better.together.business.UserDynamicBizService;
 import com.ddf.better.together.constants.TagConst;
+import com.ddf.better.together.convert.assemble.UserDynamicAssemble;
 import com.ddf.better.together.event.UserPublishDynamicEvent;
 import com.ddf.better.together.model.dto.ResourceDTO;
 import com.ddf.better.together.model.dto.UserDynamicDTO;
@@ -30,7 +31,7 @@ import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionSynchronizationAdapter;
@@ -52,7 +53,9 @@ public class UserDynamicBizServiceImpl implements UserDynamicBizService {
 
     private final IUserDynamicService userDynamicService;
 
-    private final ApplicationContext applicationContext;
+    private final ApplicationEventPublisher applicationEventPublisher;
+
+    private final UserDynamicAssemble userDynamicAssemble;
 
     /**
      * 用户发布动态
@@ -100,7 +103,7 @@ public class UserDynamicBizServiceImpl implements UserDynamicBizService {
                 dto.setUserDynamicId(dynamic.getId());
                 dto.setPublishTime(dynamic.getPublishTime());
                 dto.setViewLevel(dynamic.getViewLevel());
-                applicationContext.publishEvent(new UserPublishDynamicEvent(this, dto));
+                applicationEventPublisher.publishEvent(new UserPublishDynamicEvent(this, dto));
             }
         });
         return Boolean.TRUE;
@@ -114,7 +117,7 @@ public class UserDynamicBizServiceImpl implements UserDynamicBizService {
      */
     @Override
     public PageResult<UserDynamicResponse> searchUserDynamic(SearchUserDynamicRequest request) {
-        final Page<UserDynamicDTO> page = userDynamicService.searchUserDynamic(request);
+        final Page<UserDynamicDTO> page = userDynamicService.searchUserDynamic(userDynamicAssemble.convert(request));
         if (Objects.isNull(page) || CollectionUtil.isEmpty(page.getRecords())) {
             return PageUtil.empty(request);
         }
