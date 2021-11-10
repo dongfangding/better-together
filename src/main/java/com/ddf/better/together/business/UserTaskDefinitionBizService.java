@@ -20,7 +20,7 @@ public interface UserTaskDefinitionBizService {
      * @param request
      * @return
      */
-    Boolean definitionTask(DefinitionTaskRequest request);
+    Boolean defineTask(DefinitionTaskRequest request);
 
     /**
      * 查询登陆用户定义的任务
@@ -29,4 +29,5 @@ public interface UserTaskDefinitionBizService {
      * @return
      */
     PageResult<UserTaskDefinitionResponse> myTaskDefinition(UserTaskDefinitionRequest request);
+
 }

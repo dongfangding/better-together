@@ -45,7 +45,7 @@ public class UserTaskDefinitionBizServiceTest extends ApplicationTest {
         rewardRequest.setDescription("奖励人民币1000元");
         request.setRewardList(Lists.newArrayList(rewardRequest));
 
-        userTaskDefinitionBizService.definitionTask(request);
+        userTaskDefinitionBizService.defineTask(request);
 
         s = RandomUtil.randomString(10);
         request.setName("测试任务" + s);
@@ -53,7 +53,7 @@ public class UserTaskDefinitionBizServiceTest extends ApplicationTest {
         request.setCycle(UserTaskCycleEnum.EVERY_DAY.getCode());
         rewardRequest.setDescription("奖励人民币2000元");
         request.setRewardList(Lists.newArrayList(rewardRequest));
-        userTaskDefinitionBizService.definitionTask(request);
+        userTaskDefinitionBizService.defineTask(request);
 
         s = RandomUtil.randomString(10);;
         request.setName("测试任务" + s);
@@ -61,7 +61,7 @@ public class UserTaskDefinitionBizServiceTest extends ApplicationTest {
         request.setCycle(UserTaskCycleEnum.EVERY_WEEK.getCode());
         rewardRequest.setDescription("奖励人民币3000元");
         request.setRewardList(Lists.newArrayList(rewardRequest));
-        userTaskDefinitionBizService.definitionTask(request);
+        userTaskDefinitionBizService.defineTask(request);
 
         s = RandomUtil.randomString(10);;
         request.setName("测试任务" + s);
@@ -71,7 +71,7 @@ public class UserTaskDefinitionBizServiceTest extends ApplicationTest {
         rewardRequest2.setDescription("这是一个积分奖励");
         rewardRequest2.setRewardScore(200L);
         request.setRewardList(Lists.newArrayList(rewardRequest2));
-        userTaskDefinitionBizService.definitionTask(request);
+        userTaskDefinitionBizService.defineTask(request);
 
         s = RandomUtil.randomString(10);;
         request.setName("测试任务" + s);
@@ -86,7 +86,7 @@ public class UserTaskDefinitionBizServiceTest extends ApplicationTest {
         rewardRequest4.setDescription("这是一个递进积分奖励");
         rewardRequest4.setRewardScore(1000L);
         request.setRewardList(Lists.newArrayList(rewardRequest3, rewardRequest4));
-        userTaskDefinitionBizService.definitionTask(request);
+        userTaskDefinitionBizService.defineTask(request);
 
     }
 

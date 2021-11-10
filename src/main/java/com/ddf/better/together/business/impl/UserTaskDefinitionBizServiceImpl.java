@@ -29,13 +29,14 @@ import java.util.List;
 import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * <p>description</p >
+ * <p>用户任务定义资源库业务累</p >
  *
  * @author Snowball
  * @version 1.0
@@ -61,7 +62,7 @@ public class UserTaskDefinitionBizServiceImpl implements UserTaskDefinitionBizSe
      */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public Boolean definitionTask(DefinitionTaskRequest request) {
+    public Boolean defineTask(DefinitionTaskRequest request) {
         request.checkRequirements();
         String currentUid = UserContextUtil.getUserId();
         final UserTaskDefinition name = userTaskDefinitionService.getUserTaskByName(currentUid, request.getName());
@@ -73,6 +74,7 @@ public class UserTaskDefinitionBizServiceImpl implements UserTaskDefinitionBizSe
         LocalDateTime startTime = null;
         LocalDateTime endTime = null;
         if (Objects.equals(UserTaskCycleEnum.ONE.getCode(), request.getCycle())) {
+            PreconditionUtil.checkArgument(ObjectUtils.allNotNull(request.getStartTime(), request.getEndTime()), "任务开始和结束时间不能为空");
             startTime = request.getStartTime();
             endTime = request.getEndTime();
         } else if (Objects.equals(UserTaskCycleEnum.EVERY_DAY.getCode(), request.getCycle())) {

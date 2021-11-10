@@ -8,6 +8,9 @@ import com.ddf.better.together.model.request.EmailRegistryRequest;
 import com.ddf.better.together.model.request.EmailRegistryValidateRequest;
 import com.ddf.better.together.model.request.SearchUserRequest;
 import com.ddf.better.together.model.response.EmailRegistryValidateResponse;
+import com.ddf.common.captcha.helper.CaptchaHelper;
+import com.ddf.common.captcha.model.CaptchaRequest;
+import com.ddf.common.captcha.model.CaptchaResult;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -36,6 +39,19 @@ public class UserInfoController {
     private final CommonService commonService;
 
     private final UserInfoBizService userInfoBizService;
+
+    private final CaptchaHelper captchaHelper;
+
+    /**
+     * 生成验证码
+     *
+     * @param request
+     * @return
+     */
+    @PostMapping("/generateCaptcha")
+    public CaptchaResult generateCaptcha(@RequestBody @Validated CaptchaRequest request) {
+        return captchaHelper.generate(request);
+    }
 
     /**
      * 生成邮箱验证码
