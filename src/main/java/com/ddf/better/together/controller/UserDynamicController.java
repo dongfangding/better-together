@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
  * 用户动态 前端控制器
  * </p>
  *
+ * @menu 用户动态 前端控制器
  * @author mybatis-plus-generator
  * @since 2021-04-04
  */

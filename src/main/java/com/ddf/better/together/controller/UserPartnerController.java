@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
  * <p>
  * 用户伙伴关系表 前端控制器
  * </p>
- *
+ * @menu 用户伙伴关系表 前端控制器
  * @author mybatis-plus-generator
  * @since 2021-04-01
  */

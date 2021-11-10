@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
  * 用户任务定义表，这里作为用户自己定义的任务资源库，一旦任务开始，则会复制数据到user_task_view中，任务的结算等与这个数据挂钩 用户任务定义表 前端控制器
  * </p>
  *
+ * @menu 用户任务 前端控制器
  * @author mybatis-plus-generator
  * @since 2021-04-09
  */
