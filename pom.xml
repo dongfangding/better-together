@@ -126,10 +126,6 @@
          
     <build>
         <finalName>better-together</finalName>
-    </build>
-
-    <build>
-        <finalName>better-together</finalName>
         <plugins>
             <!-- 打包插件 -->
             <plugin>
