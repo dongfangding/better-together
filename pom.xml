@@ -123,6 +123,10 @@
             <version>${curator.version}</version>
         </dependency>
     </dependencies>
+         
+    <build>
+        <finalName>better-together</finalName>
+    </build>
 
     <distributionManagement>
         <repository>
