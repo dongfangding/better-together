@@ -30,4 +30,5 @@ public interface IUserPartnerService extends IService<UserPartner> {
      */
     List<UserPartner> getUserPartners(String uid);
 
+
 }
