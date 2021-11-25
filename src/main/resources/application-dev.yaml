@@ -4,7 +4,7 @@ nacos:
     config-retry-time: 3000
     namespace: common
     group: DEFAULT_GROUP
-    enable-remote-sync-config: false
+    enable-remote-sync-config: true
     type: yaml
     data-ids: common-server,common-datasource,common-global-properties,common-mybatis-plus,common-redis,common-mail,common-rocketmq,common-xxl-job,common-jwt,common-ids
     ext-config:
