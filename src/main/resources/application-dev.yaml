@@ -13,6 +13,11 @@ nacos:
         group: dev
         type: properties
         auto-refresh: true
+      - namespace: better-together
+        dataId: app
+        group: dev
+        type: yaml
+        auto-refresh: true
 
 customs: # 自定义的属性最好都写在custom前缀下，方便辨认
   authentication:
