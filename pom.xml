@@ -31,6 +31,12 @@
 
         <dependency>
             <groupId>com.ddf.common</groupId>
+            <artifactId>ddf-common-core</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.ddf.common</groupId>
             <artifactId>ddf-common-mybatis-plus</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
@@ -145,18 +151,4 @@
             </plugin>
         </plugins>
     </build>
-
-    <distributionManagement>
-        <repository>
-            <!-- 注意这里的id要和settings.xml中配置servers节点下的server里的id一致，因为要找到对应的账号信息 -->
-            <id>nexus_release</id>
-            <name>Release Repository of nexus_release</name>
-            <url>http://106.15.10.135:8800/repository/nexus_release/</url>
-        </repository>
-        <snapshotRepository>
-            <id>nexus_snapshot</id>
-            <name>Snapshot Repository of nexus_snapshot</name>
-            <url>http://106.15.10.135:8800/repository/nexus_snapshot/</url>
-        </snapshotRepository>
-    </distributionManagement>
 </project>
