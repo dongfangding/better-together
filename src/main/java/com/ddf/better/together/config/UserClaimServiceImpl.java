@@ -39,6 +39,7 @@ public class UserClaimServiceImpl implements UserClaimService {
         claim.setLastModifyPasswordTime(null);
         claim.setLastLoginTime(null);
         claim.setRemarks("");
-        claim.setDetail(JsonUtil.asString(userInfo));return null;
+        claim.setDetail(JsonUtil.asString(userInfo));
+        return claim;
     }
 }
