@@ -6,7 +6,7 @@ nacos:
     group: DEFAULT_GROUP
     enable-remote-sync-config: true
     type: yaml
-    data-ids: common-server,common-datasource,common-global-properties,common-mybatis-plus,common-redis,common-mail,common-rocketmq,common-xxl-job,common-jwt,common-ids
+    data-ids: common-server,common-datasource,common-global-properties,common-mybatis-plus,common-redis,common-mail,common-rocketmq,common-xxl-job,common-jwt,common-ids,common-fdfs
     ext-config:
       - namespace: better-together
         dataId: property_source
