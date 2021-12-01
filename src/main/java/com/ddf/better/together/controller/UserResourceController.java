@@ -1,9 +1,7 @@
 package com.ddf.better.together.controller;
 
-import com.github.tobato.fastdfs.domain.fdfs.StorePath;
-import com.github.tobato.fastdfs.service.FastFileStorageClient;
-import java.io.File;
-import java.io.FileInputStream;
+import comm.ddf.common.vps.dto.UploadResponse;
+import comm.ddf.common.vps.helper.VpsClient;
 import java.io.FileNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,21 +25,17 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class UserResourceController {
 
-    private final FastFileStorageClient fastFileStorageClient;
+    private final VpsClient vpsClient;
 
 
     /**
-     * 测试上传
+     * 从指定路径上传文件, 包括图片、视频等资源，视频时，缩略图为视频截帧
      *
      * @throws FileNotFoundException
      */
-    @PostMapping("testUpload")
-    public void upload(@RequestParam String filePath) throws FileNotFoundException {
-        final File file = new File(filePath);
-        String extName = filePath.substring(filePath.lastIndexOf(".") + 1);
-        final StorePath png = fastFileStorageClient.uploadFile(new FileInputStream(file), file.length(), extName, null);
-        log.info("文件上传成功， group = {}, path = {}, fullPath = {}", png.getGroup(), png.getPath(), png.getFullPath());
+    @PostMapping("uploadFileByPath")
+    public UploadResponse uploadFileByPath(@RequestParam String filePath) throws FileNotFoundException {
+        return vpsClient.uploadFile(filePath);
     }
-
 }
 

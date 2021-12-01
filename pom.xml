@@ -79,7 +79,7 @@
 
         <dependency>
             <groupId>com.ddf.common</groupId>
-            <artifactId>ddf-common-fdfs-client</artifactId>
+            <artifactId>ddf-common-vps</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
 
