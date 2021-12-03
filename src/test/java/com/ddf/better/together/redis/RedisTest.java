@@ -11,7 +11,7 @@ import com.ddf.boot.common.redis.helper.GeoHelper;
 import com.ddf.boot.common.redis.request.GeoCoordinateSearchRequest;
 import java.util.List;
 import java.util.Map;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.redisson.api.GeoOrder;
 import org.redisson.api.GeoPosition;
 import org.redisson.api.GeoUnit;

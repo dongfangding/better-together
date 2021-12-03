@@ -2,7 +2,7 @@ package com.ddf.better.together.business;
 
 import com.ddf.better.together.ApplicationTest;
 import com.ddf.better.together.job.JobBizHandler;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**

@@ -5,7 +5,7 @@ import com.ddf.better.together.model.dto.ResourceDTO;
 import com.ddf.better.together.model.request.UserResourceCreateRequest;
 import com.ddf.boot.common.core.util.JsonUtil;
 import com.google.common.collect.Lists;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**

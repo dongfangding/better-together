@@ -11,8 +11,11 @@ server:
   port: 8081
   tomcat:
     max-connections: 10000
-    max-threads: 200
-    min-spare-threads: 20
+    threads:
+      max: 300
+      min-spare: 20
+    processor-cache: 300
+
   servlet:
     context-path: /better-together
 
