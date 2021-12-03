@@ -24,6 +24,12 @@
     <dependencies>
 
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-properties-migrator</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
             <groupId>com.ddf.common</groupId>
             <artifactId>ddf-commom-ids-service</artifactId>
             <version>${project.parent.version}</version>
@@ -32,6 +38,12 @@
         <dependency>
             <groupId>com.ddf.common</groupId>
             <artifactId>ddf-common-core</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.ddf.common</groupId>
+            <artifactId>ddf-common-jwt</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
 

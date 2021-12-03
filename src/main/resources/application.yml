@@ -15,11 +15,12 @@ server:
       max: 300
       min-spare: 20
     processor-cache: 300
-
   servlet:
     context-path: /better-together
 
 spring:
+  lifecycle:
+    timeout-per-shutdown-phase: 60
   profiles:
     active: dev
   application:
