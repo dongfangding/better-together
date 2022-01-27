@@ -87,7 +87,7 @@ public class UserPartnerApplyBizServiceImpl implements UserPartnerApplyBizServic
     }
 
     /**
-     * 拒绝成为伙伴
+     * 同意成为伙伴
      *
      * @param request
      * @return
