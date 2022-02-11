@@ -111,6 +111,20 @@
             <artifactId>spring-boot-starter-log4j2</artifactId>
         </dependency>
 
+        <dependency>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <groupId>org.apache.logging.log4j</groupId>
+        </dependency>
+
+        <dependency>
+            <artifactId>log4j-api</artifactId>
+            <groupId>org.apache.logging.log4j</groupId>
+        </dependency>
+        <dependency>
+            <artifactId>log4j-core</artifactId>
+            <groupId>org.apache.logging.log4j</groupId>
+        </dependency>
+
         <!-- 日志组件依赖，异步打印日志 -->
         <dependency>
             <groupId>com.lmax</groupId>
