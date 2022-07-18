@@ -6,22 +6,15 @@ nacos:
     group: DEFAULT_GROUP
     enable-remote-sync-config: true
     type: yaml
-    data-ids: common-server,common-datasource,common-global-properties,common-mybatis-plus,common-redis,common-mail,common-rocketmq,common-xxl-job,common-jwt,common-ids,common-fdfs
+    data-ids: common-server,common-datasource,common-global-properties,common-mybatis-plus,common-redis,common-mail,common-rocketmq,common-xxl-job,common-ids,common-fdfs
     ext-config:
       - namespace: better-together
-        dataId: property_source
+        dataId: property-source
         group: dev
         type: properties
         auto-refresh: true
       - namespace: better-together
-        dataId: app
+        dataId: app-authentication
         group: dev
         type: yaml
         auto-refresh: true
-
-customs: # 自定义的属性最好都写在custom前缀下，方便辨认
-  authentication:
-    reset-password: 123456
-    white-login-name-list:
-      - 1041765757@qq.com
-      - 123@test.com

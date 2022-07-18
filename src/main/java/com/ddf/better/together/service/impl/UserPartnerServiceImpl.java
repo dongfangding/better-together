@@ -8,7 +8,7 @@ import com.ddf.better.together.constants.enumeration.UserPartnerStatusEnum;
 import com.ddf.better.together.mapper.UserPartnerMapper;
 import com.ddf.better.together.model.entity.UserPartner;
 import com.ddf.better.together.service.IUserPartnerService;
-import com.ddf.boot.common.core.util.UserContextUtil;
+import com.ddf.boot.common.authentication.util.UserContextUtil;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

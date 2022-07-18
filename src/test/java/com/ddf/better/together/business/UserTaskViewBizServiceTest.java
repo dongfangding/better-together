@@ -2,9 +2,9 @@ package com.ddf.better.together.business;
 
 import com.ddf.better.together.ApplicationTest;
 import com.ddf.better.together.model.request.UserTaskViewPageRequest;
-import com.ddf.boot.common.core.model.UserClaim;
+import com.ddf.boot.common.authentication.model.UserClaim;
+import com.ddf.boot.common.authentication.util.UserContextUtil;
 import com.ddf.boot.common.core.util.JsonUtil;
-import com.ddf.boot.common.core.util.UserContextUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

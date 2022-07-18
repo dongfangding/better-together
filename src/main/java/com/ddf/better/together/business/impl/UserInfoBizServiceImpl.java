@@ -13,7 +13,7 @@ import com.ddf.better.together.model.request.SearchUserRequest;
 import com.ddf.better.together.model.response.EmailRegistryValidateResponse;
 import com.ddf.better.together.redis.CacheKeys;
 import com.ddf.better.together.service.IUserInfoService;
-import com.ddf.boot.common.core.config.AuthenticationProperties;
+import com.ddf.boot.common.authentication.config.AuthenticationProperties;
 import com.ddf.boot.common.core.util.PreconditionUtil;
 import com.ddf.boot.common.core.util.SecureUtil;
 import com.ddf.common.ids.service.api.IdsApi;
@@ -81,8 +81,8 @@ public class UserInfoBizServiceImpl implements UserInfoBizService {
                 userInfoService.countByNickname(request.getNickname()) == 0, ExceptionCode.NICKNAME_USED);
 
         // 验证码白名单忽略处理
-        if (Objects.isNull(authenticationProperties) || CollectionUtil.isEmpty(authenticationProperties.getWhiteLoginNameList())
-                || !authenticationProperties.getWhiteLoginNameList().contains(request.getEmail())) {
+        if (Objects.isNull(authenticationProperties) || CollectionUtil.isEmpty(authenticationProperties.getBiz().getWhiteLoginNameList())
+                || !authenticationProperties.getBiz().getWhiteLoginNameList().contains(request.getEmail())) {
             // 校验验证码
             final String verifyCode = stringRedisTemplate.opsForValue()
                     .get(CacheKeys.getEmailVerifyCodeKey(request.getEmail()));

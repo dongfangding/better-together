@@ -2,9 +2,9 @@ package com.ddf.better.together.config;
 
 import com.ddf.better.together.model.entity.UserInfo;
 import com.ddf.better.together.service.IUserInfoService;
-import com.ddf.boot.common.core.model.UserClaim;
+import com.ddf.boot.common.authentication.interfaces.UserClaimService;
+import com.ddf.boot.common.authentication.model.UserClaim;
 import com.ddf.boot.common.core.util.JsonUtil;
-import com.ddf.boot.common.jwt.interfaces.UserClaimService;
 import javax.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

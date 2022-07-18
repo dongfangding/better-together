@@ -3,7 +3,7 @@ package com.ddf.better.together.convert.assemble;
 import com.ddf.better.together.convert.mapper.UserDynamicMapperConvert;
 import com.ddf.better.together.model.query.SearchUserDynamicQuery;
 import com.ddf.better.together.model.request.SearchUserDynamicRequest;
-import com.ddf.boot.common.core.util.UserContextUtil;
+import com.ddf.boot.common.authentication.util.UserContextUtil;
 import org.springframework.stereotype.Component;
 
 /**
