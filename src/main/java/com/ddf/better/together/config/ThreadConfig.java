@@ -1,8 +1,6 @@
 package com.ddf.better.together.config;
 
 import com.ddf.boot.common.core.helper.ThreadBuilderHelper;
-import com.ddf.boot.common.core.shutdown.ThreadPoolExecutorShutdownDefinition;
-import javax.annotation.PostConstruct;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
@@ -24,13 +22,6 @@ public class ThreadConfig {
     @Bean
     public ThreadPoolTaskExecutor fillDynamicReceiveBoxPool() {
         return ThreadBuilderHelper.buildThreadExecutor("fillDynamicReceiveBoxPool", 300, 1000,
-                Runtime.getRuntime().availableProcessors() + 1, Runtime.getRuntime().availableProcessors() * 2);
+                Runtime.getRuntime().availableProcessors() + 1, Runtime.getRuntime().availableProcessors() * 2, true);
     }
-
-    @PostConstruct
-    public void init() {
-        // 注册线程池优雅关闭
-        ThreadPoolExecutorShutdownDefinition.registryExecutor(fillDynamicReceiveBoxPool());
-    }
-
 }
